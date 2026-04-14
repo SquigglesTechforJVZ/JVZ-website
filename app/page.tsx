@@ -55,10 +55,10 @@ export default function StreamingPlatformWebsite() {
           </h2>
 
           <div className="aspect-video overflow-hidden rounded-2xl">
-           <iframe
+  <iframe
   className="w-full h-full"
-  src="https://www.youtube.com/embed?listType=user_uploads&list=UU"
-  title="YouTube videos"
+  src="https://www.youtube.com/embed?listType=user_uploads&list=UUjvzfrmdablk"
+  title="JVZ YouTube"
   allowFullScreen
 />
           </div>
