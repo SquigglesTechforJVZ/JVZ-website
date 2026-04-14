@@ -72,7 +72,7 @@ export default function StreamingPlatformWebsite() {
 
           <div className="aspect-video overflow-hidden rounded-2xl">
             <iframe
-              src="https://player.twitch.tv/?channel=jvzfrmdablk&parent=localhost"
+              src="https://player.twitch.tv/?channel=jvzfrmdablk&parent=jvz-website.vercel.app"
               className="w-full h-full"
               allowFullScreen
             />
