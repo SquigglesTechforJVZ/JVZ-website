@@ -163,7 +163,7 @@ export default function StreamingPlatformWebsite() {
           </div>
         </header>
 
-        <section className="mb-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
+        <section className="mb-6 grid gap-4 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.04] p-5 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="flex items-center gap-3">
               <span
@@ -204,7 +204,7 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        <section className="mb-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <section className="mb-6 grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-xl font-bold text-amber-200">Live Broadcast</h2>
@@ -234,7 +234,7 @@ export default function StreamingPlatformWebsite() {
           </div>
 
           <section className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
-            <div className="grid gap-6 lg:grid-cols-1 lg:items-center">
+            <div className="grid gap-6 md:grid-cols-1 lg:items-center">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">About JVZFrmDaBlk</p>
                 <h2 className="mt-2 text-3xl font-black md:text-4xl">Precision over panic. Speed over hesitation.</h2>
@@ -246,7 +246,7 @@ export default function StreamingPlatformWebsite() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="grid gap-4 sm:grid-cols-3 md:grid-cols-1">
                 <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5 shadow-[0_0_12px_rgba(120,105,30,0.08)]">
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-300">Style</p>
                   <p className="mt-3 text-lg font-bold">Clean Execution</p>
@@ -267,7 +267,7 @@ export default function StreamingPlatformWebsite() {
           </section>
         </section>
 
-        <section className="mb-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <section className="mb-6 grid gap-6 md:grid-cols-[1.2fr_0.8fr]">
           <section className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -285,14 +285,14 @@ export default function StreamingPlatformWebsite() {
             </div>
 
             {youtubeLoading ? (
-              <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+              <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
                 <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/30 p-3">
                   <div className="aspect-video animate-pulse rounded-[1.25rem] bg-white/5" />
                   <div className="mt-4 h-5 w-2/3 animate-pulse rounded bg-white/5" />
                   <div className="mt-3 h-4 w-full animate-pulse rounded bg-white/5" />
                   <div className="mt-2 h-4 w-5/6 animate-pulse rounded bg-white/5" />
                 </div>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                   {[...Array(4)].map((_, i) => (
                     <div key={i} className="animate-pulse rounded-[1.5rem] border border-white/10 bg-black/30 p-3">
                       <div className="aspect-video rounded-xl bg-white/5" />
@@ -303,7 +303,7 @@ export default function StreamingPlatformWebsite() {
                 </div>
               </div>
             ) : videos.length > 0 ? (
-              <div className="grid gap-4 lg:grid-cols-[1.12fr_0.88fr]">
+              <div className="grid gap-4 md:grid-cols-[1.12fr_0.88fr]">
                 <a
                   href={featuredVideo?.url}
                   target="_blank"
@@ -343,7 +343,7 @@ export default function StreamingPlatformWebsite() {
                   </div>
                 </a>
 
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                   {gridVideos.map((video, index) => (
                     <a
                       key={video.id}
@@ -391,7 +391,7 @@ export default function StreamingPlatformWebsite() {
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Featured Games</p>
               <h2 className="mt-2 text-3xl font-black">Built for speed, control, and pressure.</h2>
             </div>
-            <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1">
+            <div className="grid gap-4 md:grid-cols-3 md:grid-cols-1">
               {featuredGames.map((game) => (
                 <div
                   key={game.title}
@@ -406,7 +406,7 @@ export default function StreamingPlatformWebsite() {
           </section>
         </section>
 
-        <section className="mb-6 grid gap-6 lg:grid-cols-2">
+        <section className="mb-6 grid gap-6 md:grid-cols-2">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-xl font-bold text-amber-200">Twitch Chat</h2>
@@ -459,7 +459,7 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        <section className="mb-6 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+        <section className="mb-6 grid gap-6 md:grid-cols-[1fr_0.9fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <h2 className="mb-4 text-2xl font-bold">Highlights</h2>
             <div className="grid gap-4 md:grid-cols-2">
