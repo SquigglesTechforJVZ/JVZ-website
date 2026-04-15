@@ -1,4 +1,8 @@
 export default function StreamingPlatformWebsite() {
+  const isLive = false;
+  const liveTitle = "JVZFrmDaBlk is currently offline";
+  const liveGame = "Waiting for the next session";
+
   const schedule = [
     { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
     { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
@@ -12,10 +16,6 @@ export default function StreamingPlatformWebsite() {
     "Best raid reaction",
     "Late-night chaos highlight",
   ];
-
-  const isLive = false;
-  const liveTitle = "JVZFrmDaBlk is currently offline";
-  const liveGame = "Waiting for the next session";
 
   const featuredGames = [
     {
@@ -37,11 +37,9 @@ export default function StreamingPlatformWebsite() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Stealth background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,105,30,0.25),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(80,70,20,0.18),transparent_40%)]" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-8">
-        {/* HEADER */}
         <header className="mb-6 flex flex-col gap-4 rounded-3xl border border-amber-900/30 bg-white/[0.04] p-5 shadow-[0_0_40px_rgba(120,105,30,0.12)] backdrop-blur md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="mt-2 text-4xl font-black tracking-tight md:text-5xl">JVZFrmDaBlk</h1>
@@ -70,7 +68,6 @@ export default function StreamingPlatformWebsite() {
           </div>
         </header>
 
-        {/* LIVE STATUS BAR */}
         <section className="mb-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.04] p-5 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="flex items-center gap-3">
@@ -98,13 +95,11 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        {/* YOUTUBE */}
-        <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 mb-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
+        <div className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
           <h2 className="mb-3 text-xl font-bold text-amber-300">Featured Content</h2>
-
-          <div className={`aspect-video overflow-hidden rounded-2xl ${isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""}`}
+          <div className="aspect-video overflow-hidden rounded-2xl">
             <iframe
-              className="w-full h-full"
+              className="h-full w-full"
               src="https://www.youtube.com/embed/videoseries?list=UU"
               title="JVZ YouTube"
               allowFullScreen
@@ -112,7 +107,6 @@ export default function StreamingPlatformWebsite() {
           </div>
         </div>
 
-        {/* CHAT EMBEDS */}
         <section className="mb-6 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="mb-3 flex items-center justify-between">
@@ -166,7 +160,6 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        {/* FEATURED GAMES */}
         <section className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
           <div className="mb-5">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Featured Games</p>
@@ -186,29 +179,38 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        {/* TWITCH */}
-        <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 mb-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
+        <div className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="text-xl font-bold text-amber-200">Live Broadcast</h2>
-            <span className={`rounded-full px-3 py-1 text-xs font-bold ${isLive ? "border border-red-500/30 bg-red-500/15 text-red-200" : "border border-white/10 bg-white/5 text-white/60"}`}>
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-bold ${
+                isLive
+                  ? "border border-red-500/30 bg-red-500/15 text-red-200"
+                  : "border border-white/10 bg-white/5 text-white/60"
+              }`}
+            >
               {isLive ? "LIVE" : "OFFLINE"}
             </span>
           </div>
 
-          <div className={`aspect-video overflow-hidden rounded-2xl ${isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""}`}
+          <div
+            className={`aspect-video overflow-hidden rounded-2xl ${
+              isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""
+            }`}
+          >
             <iframe
               src="https://player.twitch.tv/?channel=jvzfrmdablk&parent=jvz-website.vercel.app"
-              className="w-full h-full"
+              className="h-full w-full"
               allowFullScreen
+              title="JVZ Twitch Stream"
             />
           </div>
         </div>
 
-        {/* SCHEDULE */}
-        <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 mb-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
-          <h2 className="text-2xl font-bold mb-4">Schedule</h2>
+        <div className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
+          <h2 className="mb-4 text-2xl font-bold">Schedule</h2>
           {schedule.map((item) => (
-            <div key={item.day} className="flex justify-between py-2 border-b border-white/10">
+            <div key={item.day} className="flex justify-between border-b border-white/10 py-2">
               <span className="text-white/90">{item.day}</span>
               <span className="text-white/70">{item.time}</span>
               <span className="text-amber-200">{item.title}</span>
@@ -216,12 +218,14 @@ export default function StreamingPlatformWebsite() {
           ))}
         </div>
 
-        {/* CLIPS */}
         <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
-          <h2 className="text-2xl font-bold mb-4">Highlights</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <h2 className="mb-4 text-2xl font-bold">Highlights</h2>
+          <div className="grid gap-4 md:grid-cols-2">
             {clips.map((clip) => (
-              <div key={clip} className="bg-black/40 border border-white/10 p-4 rounded-xl shadow-[0_0_12px_rgba(120,105,30,0.08)]">
+              <div
+                key={clip}
+                className="rounded-xl border border-white/10 bg-black/40 p-4 shadow-[0_0_12px_rgba(120,105,30,0.08)]"
+              >
                 {clip}
               </div>
             ))}
