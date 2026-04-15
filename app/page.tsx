@@ -1,7 +1,26 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+type LiveStatus = {
+  isLive: boolean;
+  title: string;
+  game: string;
+  viewerCount?: number;
+  startedAt?: string | null;
+  channelLogin?: string;
+  channelName?: string;
+  error?: string;
+};
+
 export default function StreamingPlatformWebsite() {
-  const isLive = false;
-  const liveTitle = "JVZFrmDaBlk is currently offline";
-  const liveGame = "Waiting for the next session";
+  const [live, setLive] = useState<LiveStatus>({
+    isLive: false,
+    title: "Loading live status...",
+    game: "Checking Twitch...",
+    viewerCount: 0,
+    startedAt: null,
+  });
 
   const schedule = [
     { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
@@ -34,6 +53,48 @@ export default function StreamingPlatformWebsite() {
       text: "Mix of racing, shooters, and live reactions built around the channel vibe.",
     },
   ];
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadLiveStatus() {
+      try {
+        const response = await fetch("/api/live-status", { cache: "no-store" });
+        const json = await response.json();
+
+        if (!mounted) return;
+
+        setLive({
+          isLive: Boolean(json.isLive),
+          title: json.title || "Live status unavailable",
+          game: json.game || "Could not load Twitch status",
+          viewerCount: json.viewerCount || 0,
+          startedAt: json.startedAt || null,
+          channelLogin: json.channelLogin || "jvzfrmdablk",
+          channelName: json.channelName || "JVZFrmDaBlk",
+          error: json.error,
+        });
+      } catch {
+        if (!mounted) return;
+
+        setLive({
+          isLive: false,
+          title: "Live status unavailable",
+          game: "Could not load Twitch status",
+          viewerCount: 0,
+          startedAt: null,
+        });
+      }
+    }
+
+    loadLiveStatus();
+    const interval = setInterval(loadLiveStatus, 60000);
+
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -71,12 +132,18 @@ export default function StreamingPlatformWebsite() {
         <section className="mb-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.04] p-5 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="flex items-center gap-3">
-              <span className={`inline-flex h-3 w-3 rounded-full ${isLive ? "bg-red-500 animate-pulse" : "bg-zinc-500"}`} />
+              <span
+                className={`inline-flex h-3 w-3 rounded-full ${
+                  live.isLive ? "bg-red-500 animate-pulse" : "bg-zinc-500"
+                }`}
+              />
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Live Status</p>
             </div>
-            <h2 className="mt-3 text-2xl font-black">{isLive ? "LIVE NOW" : "Offline right now. Locked in soon."}</h2>
+            <h2 className="mt-3 text-2xl font-black">
+              {live.isLive ? "LIVE NOW" : "Offline right now. Locked in soon."}
+            </h2>
             <p className="mt-2 text-sm leading-6 text-white/70">
-              {isLive
+              {live.isLive
                 ? "The channel is live right now. Jump in and catch the action as it happens."
                 : "Catch uploads on YouTube and jump to Twitch when the stream goes live."}
             </p>
@@ -84,14 +151,22 @@ export default function StreamingPlatformWebsite() {
 
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-5 shadow-[0_0_30px_rgba(120,105,30,0.08)]">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Current Title</p>
-            <p className="mt-3 text-xl font-bold">{liveTitle}</p>
-            <p className="mt-2 text-sm text-white/70">Update this text when you change stream themes, uploads, or featured sessions.</p>
+            <p className="mt-3 text-xl font-bold">{live.title}</p>
+            <p className="mt-2 text-sm text-white/70">
+              {live.isLive
+                ? "Pulled live from Twitch automatically."
+                : "This updates automatically when the channel goes live."}
+            </p>
           </div>
 
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-5 shadow-[0_0_30px_rgba(120,105,30,0.08)]">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Current Focus</p>
-            <p className="mt-3 text-xl font-bold">{liveGame}</p>
-            <p className="mt-2 text-sm text-white/70">Use this for the game, content category, or event you are currently running.</p>
+            <p className="mt-3 text-xl font-bold">{live.game}</p>
+            <p className="mt-2 text-sm text-white/70">
+              {live.isLive
+                ? `${live.viewerCount || 0} viewer${live.viewerCount === 1 ? "" : "s"} watching now.`
+                : "Waiting for the next session."}
+            </p>
           </div>
         </section>
 
@@ -184,18 +259,18 @@ export default function StreamingPlatformWebsite() {
             <h2 className="text-xl font-bold text-amber-200">Live Broadcast</h2>
             <span
               className={`rounded-full px-3 py-1 text-xs font-bold ${
-                isLive
+                live.isLive
                   ? "border border-red-500/30 bg-red-500/15 text-red-200"
                   : "border border-white/10 bg-white/5 text-white/60"
               }`}
             >
-              {isLive ? "LIVE" : "OFFLINE"}
+              {live.isLive ? "LIVE" : "OFFLINE"}
             </span>
           </div>
 
           <div
             className={`aspect-video overflow-hidden rounded-2xl ${
-              isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""
+              live.isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""
             }`}
           >
             <iframe
