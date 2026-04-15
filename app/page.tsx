@@ -13,6 +13,16 @@ type LiveStatus = {
   error?: string;
 };
 
+type YouTubeVideo = {
+  id: string;
+  title: string;
+  description?: string;
+  publishedAt?: string | null;
+  thumbnail: string;
+  url: string;
+  embedUrl?: string;
+};
+
 export default function StreamingPlatformWebsite() {
   const [live, setLive] = useState<LiveStatus>({
     isLive: false,
@@ -21,6 +31,9 @@ export default function StreamingPlatformWebsite() {
     viewerCount: 0,
     startedAt: null,
   });
+
+  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+  const [youtubeLoading, setYoutubeLoading] = useState(true);
 
   const schedule = [
     { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
@@ -87,7 +100,25 @@ export default function StreamingPlatformWebsite() {
       }
     }
 
+    async function loadYouTubeFeed() {
+      try {
+        const response = await fetch("/api/youtube-feed", { cache: "no-store" });
+        const json = await response.json();
+
+        if (!mounted) return;
+
+        setVideos(Array.isArray(json.videos) ? json.videos : []);
+      } catch {
+        if (!mounted) return;
+        setVideos([]);
+      } finally {
+        if (mounted) setYoutubeLoading(false);
+      }
+    }
+
     loadLiveStatus();
+    loadYouTubeFeed();
+
     const interval = setInterval(loadLiveStatus, 60000);
 
     return () => {
@@ -95,6 +126,9 @@ export default function StreamingPlatformWebsite() {
       clearInterval(interval);
     };
   }, []);
+
+  const featuredVideo = videos[0];
+  const gridVideos = videos.slice(1, 7);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -170,17 +204,97 @@ export default function StreamingPlatformWebsite() {
           </div>
         </section>
 
-        <div className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
-          <h2 className="mb-3 text-xl font-bold text-amber-300">Featured Content</h2>
-          <div className="aspect-video overflow-hidden rounded-2xl">
-            <iframe
-              className="h-full w-full"
-              src="https://www.youtube.com/embed/videoseries?list=UU"
-              title="JVZ YouTube"
-              allowFullScreen
-            />
+        <section className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-xl font-bold text-amber-300">YouTube Grid</h2>
+            <a
+              href="https://www.youtube.com/@jvzfrmdablk/videos"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-amber-300 hover:underline"
+            >
+              View all videos
+            </a>
           </div>
-        </div>
+
+          {youtubeLoading ? (
+            <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="aspect-video animate-pulse rounded-2xl bg-white/5" />
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {[...Array(4)].map((_, i) => (
+                  <div key={i} className="animate-pulse rounded-2xl border border-white/10 bg-white/[0.03] p-3">
+                    <div className="aspect-video rounded-xl bg-white/5" />
+                    <div className="mt-3 h-4 rounded bg-white/5" />
+                    <div className="mt-2 h-3 w-2/3 rounded bg-white/5" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : videos.length > 0 ? (
+            <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+              <a
+                href={featuredVideo?.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_0_18px_rgba(120,105,30,0.08)] transition hover:border-amber-300/30"
+              >
+                <div className="aspect-video overflow-hidden">
+                  {featuredVideo?.thumbnail ? (
+                    <img
+                      src={featuredVideo.thumbnail}
+                      alt={featuredVideo.title}
+                      className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center bg-white/5 text-white/50">
+                      No thumbnail available
+                    </div>
+                  )}
+                </div>
+                <div className="p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-amber-300">Featured Upload</p>
+                  <h3 className="mt-3 text-2xl font-black leading-tight">{featuredVideo?.title}</h3>
+                  <p className="mt-3 text-sm text-white/60">Latest YouTube upload pulled automatically from your channel feed.</p>
+                </div>
+              </a>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {gridVideos.map((video) => (
+                  <a
+                    key={video.id}
+                    href={video.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group flex gap-3 rounded-2xl border border-white/10 bg-black/40 p-3 shadow-[0_0_12px_rgba(120,105,30,0.08)] transition hover:border-amber-300/30 hover:bg-black/50"
+                  >
+                    <div className="h-24 w-40 flex-shrink-0 overflow-hidden rounded-xl bg-white/5">
+                      {video.thumbnail ? (
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                        />
+                      ) : (
+                        <div className="flex h-full items-center justify-center text-xs text-white/40">
+                          No image
+                        </div>
+                      )}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">YouTube</p>
+                      <h4 className="mt-2 line-clamp-2 text-sm font-bold text-white">{video.title}</h4>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-white/15 bg-black/30 px-6 py-12 text-center">
+              <p className="text-lg font-semibold">Could not load YouTube videos right now.</p>
+              <p className="mt-2 text-sm text-white/65">Check your YouTube API key and channel ID in Vercel, then redeploy.</p>
+            </div>
+          )}
+        </section>
 
         <section className="mb-6 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
