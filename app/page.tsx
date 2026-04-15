@@ -322,6 +322,39 @@ export default function StreamingPlatformWebsite() {
           )}
         </section>
 
+        <section className="mb-6 rounded-3xl border border-amber-900/30 bg-white/[0.03] p-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">About JVZFrmDaBlk</p>
+              <h2 className="mt-2 text-3xl font-black md:text-4xl">Precision over panic. Speed over hesitation.</h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/72">
+                JVZFrmDaBlk is built around control under pressure — whether it is chasing the cleanest line on the track, reading a firefight in real time, or locking into a high-focus live session.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-white/62">
+                The channel blends racing precision, shooter awareness, and community energy into a style that stays sharp, smooth, and deliberate. Every stream, upload, and reaction is meant to feel clean, fast, and dialed in.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5 shadow-[0_0_12px_rgba(120,105,30,0.08)]">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-300">Style</p>
+                <p className="mt-3 text-lg font-bold">Clean Execution</p>
+                <p className="mt-2 text-sm leading-6 text-white/65">Focused gameplay, sharp reactions, and steady control.</p>
+              </div>
+              <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5 shadow-[0_0_12px_rgba(120,105,30,0.08)]">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-300">Focus</p>
+                <p className="mt-3 text-lg font-bold">Racing + Firefights</p>
+                <p className="mt-2 text-sm leading-6 text-white/65">Built around speed, awareness, and decision-making under pressure.</p>
+              </div>
+              <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-5 shadow-[0_0_12px_rgba(120,105,30,0.08)]">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-300">Energy</p>
+                <p className="mt-3 text-lg font-bold">Community Locked In</p>
+                <p className="mt-2 text-sm leading-6 text-white/65">Uploads, live streams, and chat that keep the whole page feeling active.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-6 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="mb-3 flex items-center justify-between">
