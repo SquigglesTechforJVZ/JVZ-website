@@ -13,6 +13,10 @@ export default function StreamingPlatformWebsite() {
     "Late-night chaos highlight",
   ];
 
+  const isLive = false;
+  const liveTitle = "JVZFrmDaBlk is currently offline";
+  const liveGame = "Waiting for the next session";
+
   const featuredGames = [
     {
       title: "Gran Turismo 7",
@@ -70,25 +74,27 @@ export default function StreamingPlatformWebsite() {
         <section className="mb-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.04] p-5 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-3 w-3 rounded-full bg-red-500" />
+              <span className={`inline-flex h-3 w-3 rounded-full ${isLive ? "bg-red-500 animate-pulse" : "bg-zinc-500"}`} />
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Live Status</p>
             </div>
-            <h2 className="mt-3 text-2xl font-black">Offline right now. Locked in soon.</h2>
+            <h2 className="mt-3 text-2xl font-black">{isLive ? "LIVE NOW" : "Offline right now. Locked in soon."}</h2>
             <p className="mt-2 text-sm leading-6 text-white/70">
-              Catch uploads on YouTube and jump to Twitch when the stream goes live.
+              {isLive
+                ? "The channel is live right now. Jump in and catch the action as it happens."
+                : "Catch uploads on YouTube and jump to Twitch when the stream goes live."}
             </p>
           </div>
 
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-5 shadow-[0_0_30px_rgba(120,105,30,0.08)]">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Primary Platform</p>
-            <p className="mt-3 text-xl font-bold">YouTube First</p>
-            <p className="mt-2 text-sm text-white/70">Main uploads, featured content, and front-page focus live here.</p>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Current Title</p>
+            <p className="mt-3 text-xl font-bold">{liveTitle}</p>
+            <p className="mt-2 text-sm text-white/70">Update this text when you change stream themes, uploads, or featured sessions.</p>
           </div>
 
           <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-5 shadow-[0_0_30px_rgba(120,105,30,0.08)]">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Broadcast Focus</p>
-            <p className="mt-3 text-xl font-bold">Twitch Live</p>
-            <p className="mt-2 text-sm text-white/70">When the stream is on, this is where the real-time action happens.</p>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-amber-300">Current Focus</p>
+            <p className="mt-3 text-xl font-bold">{liveGame}</p>
+            <p className="mt-2 text-sm text-white/70">Use this for the game, content category, or event you are currently running.</p>
           </div>
         </section>
 
@@ -96,7 +102,7 @@ export default function StreamingPlatformWebsite() {
         <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 mb-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
           <h2 className="mb-3 text-xl font-bold text-amber-300">Featured Content</h2>
 
-          <div className="aspect-video overflow-hidden rounded-2xl">
+          <div className={`aspect-video overflow-hidden rounded-2xl ${isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""}`}
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/videoseries?list=UU"
@@ -182,9 +188,14 @@ export default function StreamingPlatformWebsite() {
 
         {/* TWITCH */}
         <div className="rounded-3xl border border-amber-900/30 bg-white/[0.03] p-4 mb-6 shadow-[0_0_30px_rgba(120,105,30,0.1)]">
-          <h2 className="mb-3 text-xl font-bold text-amber-200">Live Broadcast</h2>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-xl font-bold text-amber-200">Live Broadcast</h2>
+            <span className={`rounded-full px-3 py-1 text-xs font-bold ${isLive ? "border border-red-500/30 bg-red-500/15 text-red-200" : "border border-white/10 bg-white/5 text-white/60"}`}>
+              {isLive ? "LIVE" : "OFFLINE"}
+            </span>
+          </div>
 
-          <div className="aspect-video overflow-hidden rounded-2xl">
+          <div className={`aspect-video overflow-hidden rounded-2xl ${isLive ? "ring-2 ring-red-500/40 shadow-[0_0_25px_rgba(220,38,38,0.18)]" : ""}`}
             <iframe
               src="https://player.twitch.tv/?channel=jvzfrmdablk&parent=jvz-website.vercel.app"
               className="w-full h-full"
