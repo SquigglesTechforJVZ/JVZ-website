@@ -24,6 +24,76 @@ type YouTubeVideo = {
 };
 
 const styles: Record<string, CSSProperties> = {
+  topBar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 16,
+    flexWrap: "wrap",
+    marginBottom: 18,
+    padding: "0 4px",
+  },
+  topBarLeft: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    flexWrap: "wrap",
+  },
+  brandPill: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "10px 14px",
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(212,175,55,0.18)",
+    boxShadow: "0 0 16px rgba(120,105,30,0.08)",
+  },
+  brandMark: {
+    width: 34,
+    height: 34,
+    borderRadius: 999,
+    background: "linear-gradient(135deg, #d4af37, #7a671c)",
+    color: "#050505",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: 900,
+    fontSize: 14,
+    boxShadow: "0 0 16px rgba(212,175,55,0.28)",
+  },
+  brandMeta: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  topLinks: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    flexWrap: "wrap",
+  },
+  tinyLink: {
+    color: "rgba(255,255,255,0.72)",
+    textDecoration: "none",
+    fontSize: 13,
+    fontWeight: 700,
+    padding: "8px 12px",
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.025)",
+    border: "1px solid rgba(255,255,255,0.08)",
+  },
+  watermark: {
+    position: "absolute",
+    right: -20,
+    bottom: -28,
+    fontSize: 120,
+    fontWeight: 900,
+    letterSpacing: -4,
+    color: "rgba(255,255,255,0.035)",
+    pointerEvents: "none",
+    userSelect: "none",
+  },
   page: {
     minHeight: "100vh",
     background:
@@ -509,7 +579,29 @@ export default function StreamingPlatformWebsite() {
   return (
     <div style={styles.page}>
       <div style={styles.container}>
-        <section style={{ ...styles.card, ...styles.header }}>
+        <section style={styles.topBar}>
+          <div style={styles.topBarLeft}>
+            <div style={styles.brandPill}>
+              <div style={styles.brandMark}>JVZ</div>
+              <div style={styles.brandMeta}>
+                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2.5, textTransform: "uppercase", color: "#d4af37" }}>
+                  Custom Brand Layer
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 800, color: "#ffffff" }}>JVZFrmDaBlk</span>
+              </div>
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
+              Clean esports identity • dark stealth finish
+            </div>
+          </div>
+
+          <div style={styles.topLinks}>
+            <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.tinyLink}>YouTube</a>
+            <a href="https://www.twitch.tv/jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.tinyLink}>Twitch</a>
+            <a href="#" style={styles.tinyLink}>Brand Kit</a>
+          </div>
+        </section>
+        <section style={{ ...styles.card, ...styles.header, position: "relative", overflow: "hidden" }}>
           <div>
             <div style={styles.eyebrow}>Streaming Home Base</div>
             <h1 style={styles.title}>JVZFrmDaBlk</h1>
@@ -517,7 +609,7 @@ export default function StreamingPlatformWebsite() {
               Whether I’m behind the wheel or in the middle of a firefight, it’s all about being fast, smooth, and deadly precise.
             </p>
           </div>
-          <div style={styles.buttonRow}>
+          <div style={{ ...styles.buttonRow, position: "relative", zIndex: 1 }}>
             <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonPrimary}>
               Watch on YouTube
             </a>
@@ -525,6 +617,7 @@ export default function StreamingPlatformWebsite() {
               Watch on Twitch
             </a>
           </div>
+                  <div style={styles.watermark}>JVZ</div>
         </section>
 
         <section style={styles.heroBanner}>
