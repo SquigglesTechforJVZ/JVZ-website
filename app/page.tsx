@@ -721,7 +721,6 @@ return (
 
     {/* EXISTING CONTENT */}
     <div style={styles.container}>
-      <section style={styles.topBar}>
       <div style={styles.container}>
         <section style={styles.topBar}>
           <div style={styles.topBarLeft}>
