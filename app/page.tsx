@@ -602,6 +602,7 @@ export default function StreamingPlatformWebsite() {
 
   return (
     <div style={styles.page}>
+      
     {/* 🔴 LIVE STATUS BAR */}
     <section style={styles.liveTicker}>
       <div style={styles.liveTickerGlow} />
