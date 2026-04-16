@@ -27,57 +27,70 @@ const styles: Record<string, CSSProperties> = {
   page: {
     minHeight: "100vh",
     background:
-      "radial-gradient(circle at top, rgba(120,105,30,0.25), transparent 40%), radial-gradient(circle at bottom right, rgba(80,70,20,0.18), transparent 40%), #000000",
+      "radial-gradient(circle at top, rgba(120,105,30,0.22), transparent 35%), radial-gradient(circle at 85% 15%, rgba(90,75,20,0.12), transparent 28%), linear-gradient(180deg, #050505 0%, #090909 100%)",
     color: "#ffffff",
     fontFamily: "Arial, Helvetica, sans-serif",
   },
   container: {
-    maxWidth: 1280,
+    maxWidth: 1320,
     margin: "0 auto",
     padding: "24px",
   },
+  sectionGap: {
+    marginBottom: 24,
+  },
   card: {
-    border: "1px solid rgba(120,105,30,0.35)",
-    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(120,105,30,0.26)",
+    background: "linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025))",
     borderRadius: 24,
-    boxShadow: "0 0 30px rgba(120,105,30,0.10)",
+    boxShadow: "0 0 30px rgba(120,105,30,0.08)",
+    backdropFilter: "blur(6px)",
   },
   header: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 16,
+    gap: 18,
     flexWrap: "wrap",
-    padding: 24,
-    marginBottom: 24,
+    padding: 28,
+  },
+  eyebrow: {
+    color: "#d4af37",
+    fontWeight: 800,
+    fontSize: 12,
+    letterSpacing: 3,
+    textTransform: "uppercase",
+    marginBottom: 8,
   },
   title: {
-    fontSize: 54,
+    fontSize: 56,
     fontWeight: 900,
     margin: 0,
-    letterSpacing: -1,
+    letterSpacing: -1.2,
+    lineHeight: 0.95,
   },
   subtitle: {
-    marginTop: 10,
+    marginTop: 14,
     maxWidth: 760,
-    color: "rgba(255,255,255,0.72)",
+    color: "rgba(255,255,255,0.74)",
     fontSize: 20,
-    lineHeight: 1.5,
+    lineHeight: 1.55,
   },
   buttonRow: {
     display: "flex",
     gap: 12,
     flexWrap: "wrap",
+    alignItems: "center",
   },
   buttonPrimary: {
     display: "inline-block",
     background: "#d4af37",
-    color: "#000",
+    color: "#050505",
     padding: "14px 22px",
     borderRadius: 16,
     textDecoration: "none",
     fontWeight: 800,
-    boxShadow: "0 0 16px rgba(212,175,55,0.35)",
+    boxShadow: "0 0 18px rgba(212,175,55,0.34)",
   },
   buttonSecondary: {
     display: "inline-block",
@@ -87,7 +100,107 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: 16,
     textDecoration: "none",
     fontWeight: 700,
-    border: "1px solid rgba(212,175,55,0.22)",
+    border: "1px solid rgba(212,175,55,0.2)",
+  },
+  heroBanner: {
+    display: "grid",
+    gridTemplateColumns: "1.15fr 0.85fr",
+    gap: 24,
+    marginBottom: 24,
+  },
+  heroMain: {
+    padding: 24,
+    minHeight: 380,
+    position: "relative",
+    overflow: "hidden",
+  },
+  heroGlow: {
+    position: "absolute",
+    inset: 0,
+    background:
+      "radial-gradient(circle at 20% 20%, rgba(212,175,55,0.12), transparent 30%), linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0))",
+    pointerEvents: "none",
+  },
+  heroTitle: {
+    fontSize: 40,
+    fontWeight: 900,
+    lineHeight: 1.05,
+    maxWidth: 700,
+    margin: "10px 0 14px 0",
+    position: "relative",
+    zIndex: 1,
+  },
+  heroText: {
+    color: "rgba(255,255,255,0.7)",
+    maxWidth: 640,
+    lineHeight: 1.65,
+    fontSize: 16,
+    position: "relative",
+    zIndex: 1,
+  },
+  heroStats: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+    gap: 14,
+    marginTop: 24,
+    position: "relative",
+    zIndex: 1,
+  },
+  statCard: {
+    borderRadius: 18,
+    background: "rgba(0,0,0,0.28)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    padding: 16,
+  },
+  statValue: {
+    fontSize: 26,
+    fontWeight: 900,
+    marginBottom: 6,
+  },
+  statLabel: {
+    color: "rgba(255,255,255,0.58)",
+    fontSize: 13,
+  },
+  nowPlaying: {
+    padding: 24,
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+  },
+  liveChip: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    width: "fit-content",
+    borderRadius: 999,
+    padding: "8px 14px",
+    fontSize: 12,
+    fontWeight: 800,
+    letterSpacing: 2,
+    textTransform: "uppercase",
+  },
+  liveDotOn: {
+    width: 10,
+    height: 10,
+    borderRadius: 999,
+    background: "#ef4444",
+    boxShadow: "0 0 14px rgba(239,68,68,0.7)",
+  },
+  liveDotOff: {
+    width: 10,
+    height: 10,
+    borderRadius: 999,
+    background: "#71717a",
+  },
+  sideKpi: {
+    display: "grid",
+    gap: 12,
+  },
+  sideMiniCard: {
+    borderRadius: 18,
+    background: "rgba(0,0,0,0.26)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    padding: 16,
   },
   grid3: {
     display: "grid",
@@ -97,15 +210,17 @@ const styles: Record<string, CSSProperties> = {
   },
   gridMainSide: {
     display: "grid",
-    gridTemplateColumns: "1.2fr 0.8fr",
+    gridTemplateColumns: "1.22fr 0.78fr",
     gap: 24,
     marginBottom: 24,
+    alignItems: "start",
   },
   gridTwo: {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
     gap: 24,
     marginBottom: 24,
+    alignItems: "start",
   },
   panel: {
     padding: 22,
@@ -122,6 +237,7 @@ const styles: Record<string, CSSProperties> = {
     fontSize: 34,
     fontWeight: 900,
     margin: "4px 0 14px 0",
+    lineHeight: 1.08,
   },
   statusDotWrap: {
     display: "flex",
@@ -169,7 +285,7 @@ const styles: Record<string, CSSProperties> = {
   },
   youtubeLayout: {
     display: "grid",
-    gridTemplateColumns: "1.12fr 0.88fr",
+    gridTemplateColumns: "1.08fr 0.92fr",
     gap: 16,
   },
   featuredVideo: {
@@ -209,7 +325,7 @@ const styles: Record<string, CSSProperties> = {
   overlayGradient: {
     position: "absolute",
     inset: 0,
-    background: "linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.15), transparent)",
+    background: "linear-gradient(to top, rgba(0,0,0,0.86), rgba(0,0,0,0.12), transparent)",
   },
   overlayTitleWrap: {
     position: "absolute",
@@ -395,6 +511,7 @@ export default function StreamingPlatformWebsite() {
       <div style={styles.container}>
         <section style={{ ...styles.card, ...styles.header }}>
           <div>
+            <div style={styles.eyebrow}>Streaming Home Base</div>
             <h1 style={styles.title}>JVZFrmDaBlk</h1>
             <p style={styles.subtitle}>
               Whether I’m behind the wheel or in the middle of a firefight, it’s all about being fast, smooth, and deadly precise.
@@ -402,11 +519,60 @@ export default function StreamingPlatformWebsite() {
           </div>
           <div style={styles.buttonRow}>
             <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonPrimary}>
-              YouTube
+              Watch on YouTube
             </a>
             <a href="https://www.twitch.tv/jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonSecondary}>
-              Twitch
+              Watch on Twitch
             </a>
+          </div>
+        </section>
+
+        <section style={styles.heroBanner}>
+          <div style={{ ...styles.card, ...styles.heroMain }}>
+            <div style={styles.heroGlow} />
+            <div style={styles.eyebrow}>Creator Homepage</div>
+            <div style={styles.heroTitle}>Fast decisions, smooth control, and a page built to feel live.</div>
+            <div style={styles.heroText}>
+              This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
+            </div>
+            <div style={styles.heroStats}>
+              <div style={styles.statCard}>
+                <div style={styles.statValue}>{live.isLive ? "LIVE" : "OFFLINE"}</div>
+                <div style={styles.statLabel}>Current status</div>
+              </div>
+              <div style={styles.statCard}>
+                <div style={styles.statValue}>{videos.length > 0 ? videos.length : "--"}</div>
+                <div style={styles.statLabel}>Recent videos loaded</div>
+              </div>
+              <div style={styles.statCard}>
+                <div style={styles.statValue}>{live.viewerCount || 0}</div>
+                <div style={styles.statLabel}>Live viewers now</div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ ...styles.card, ...styles.nowPlaying }}>
+            <div style={{ ...styles.liveChip, background: live.isLive ? "rgba(239,68,68,0.14)" : "rgba(255,255,255,0.05)", border: live.isLive ? "1px solid rgba(239,68,68,0.24)" : "1px solid rgba(255,255,255,0.1)" }}>
+              <span style={live.isLive ? styles.liveDotOn : styles.liveDotOff} />
+              {live.isLive ? "Live right now" : "Currently offline"}
+            </div>
+            <div>
+              <div style={styles.smallLabel}>Now Playing</div>
+              <div style={{ fontSize: 28, fontWeight: 900, lineHeight: 1.2 }}>{live.title}</div>
+              <div style={{ ...styles.muted, marginTop: 10, lineHeight: 1.6 }}>{live.game}</div>
+            </div>
+            <div style={styles.sideKpi}>
+              <div style={styles.sideMiniCard}>
+                <div style={styles.smallLabel}>Primary Platform</div>
+                <div style={{ fontSize: 22, fontWeight: 800 }}>YouTube First</div>
+                <div style={{ ...styles.muted, marginTop: 8 }}>Uploads, featured content, and hero placement lead the page.</div>
+              </div>
+              <div style={styles.sideMiniCard}>
+                <div style={styles.smallLabel}>Live Focus</div>
+                <div style={{ fontSize: 22, fontWeight: 800 }}>Twitch Broadcast</div>
+                <div style={{ ...styles.muted, marginTop: 8 }}>When the stream is on, this is where the real-time action happens.</div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -474,7 +640,7 @@ export default function StreamingPlatformWebsite() {
             </div>
           </div>
 
-          <div style={{ ...styles.card, ...styles.panel }}>
+          <div style={{ ...styles.card, ...styles.panel, position: "sticky", top: 24 }}>
             <div style={styles.smallLabel}>About JVZFrmDaBlk</div>
             <div style={styles.sectionTitle}>Precision over panic. Speed over hesitation.</div>
             <p style={{ ...styles.muted, fontSize: 18, lineHeight: 1.6 }}>
@@ -521,9 +687,7 @@ export default function StreamingPlatformWebsite() {
               <div style={styles.youtubeLayout}>
                 <a href={featuredVideo?.url} target="_blank" rel="noreferrer" style={styles.featuredVideo}>
                   <div style={styles.featuredVideoImageWrap}>
-                    {featuredVideo?.thumbnail ? (
-                      <img src={featuredVideo.thumbnail} alt={featuredVideo.title} style={styles.featuredVideoImg} />
-                    ) : null}
+                    {featuredVideo?.thumbnail ? <img src={featuredVideo.thumbnail} alt={featuredVideo.title} style={styles.featuredVideoImg} /> : null}
                     <div style={styles.overlayGradient} />
                     <div style={styles.overlayBadge}>Featured Upload</div>
                     <div style={styles.overlayTitleWrap}>
@@ -541,9 +705,7 @@ export default function StreamingPlatformWebsite() {
                     <a key={video.id} href={video.url} target="_blank" rel="noreferrer" style={styles.sideVideoCard}>
                       <div style={styles.thumbWrap}>
                         {video.thumbnail ? <img src={video.thumbnail} alt={video.title} style={styles.thumbImg} /> : null}
-                        <div style={{ ...styles.overlayBadge, top: 8, left: 8, fontSize: 10, padding: "4px 8px" }}>
-                          0{index + 1}
-                        </div>
+                        <div style={{ ...styles.overlayBadge, top: 8, left: 8, fontSize: 10, padding: "4px 8px" }}>0{index + 1}</div>
                       </div>
                       <div style={{ minWidth: 0 }}>
                         <div style={{ ...styles.smallLabel, marginBottom: 6 }}>YouTube</div>
