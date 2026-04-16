@@ -720,109 +720,144 @@ return (
         <section style={styles.topBar}>
 
     {/* EXISTING CONTENT */}
-    <div style={styles.container}>
-      <div style={styles.container}>
-        <section style={styles.topBar}>
-          <div style={styles.topBarLeft}>
-            <div style={styles.brandPill}>
-           <img
-  src="/Speed_Line.png"
-  alt="JVZFrmDaBlk"
-  style={{
-    height: 60,
-    objectFit: "contain",
-    filter: "drop-shadow(0 0 12px rgba(212,175,55,0.5))"
-  }}
-/>
-              <div style={styles.brandMeta}>
-                <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2.5, textTransform: "uppercase", color: "#d4af37" }}>
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 800, color: "#ffffff" }}>JVZFrmDaBlk</span>
-              </div>
+      <section style={styles.topBar}>
+        <div style={styles.topBarLeft}>
+          <div style={styles.brandPill}>
+            <img
+              src="/Speed_Line.png"
+              alt="JVZFrmDaBlk"
+              style={{
+                height: 60,
+                objectFit: "contain",
+                filter: "drop-shadow(0 0 12px rgba(212,175,55,0.5))"
+              }}
+            />
+            <div style={styles.brandMeta}>
+              <span style={{ fontSize: 14, fontWeight: 800, color: "#ffffff" }}>
+                JVZFrmDaBlk
+              </span>
             </div>
-            <div style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
-            </div>
+          </div>
+        </div>
+
+        <div style={styles.topLinks}>
+          <a
+            href="https://www.youtube.com/@jvzfrmdablk"
+            target="_blank"
+            rel="noreferrer"
+            style={styles.tinyLink}
+          >
+            YouTube
+          </a>
+          <a
+            href="https://www.twitch.tv/jvzfrmdablk"
+            target="_blank"
+            rel="noreferrer"
+            style={styles.tinyLink}
+          >
+            Twitch
+          </a>
+          <a href="#" style={styles.tinyLink}>
+            Brand Kit
+          </a>
+        </div>
+      </section>
+
+      <section
+        style={{
+          ...styles.card,
+          ...styles.header,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div>
+          <div style={styles.eyebrow}>Streaming Home Base</div>
+          <h1 style={styles.title}>JVZFrmDaBlk</h1>
+          <p style={styles.subtitle}>
+            Whether I’m behind the wheel or in the middle of a firefight, it’s all about being fast, smooth, and deadly precise.
+          </p>
+        </div>
+
+        <div style={{ ...styles.buttonRow, position: "relative", zIndex: 1 }}>
+          <a
+            href="https://www.youtube.com/@jvzfrmdablk"
+            target="_blank"
+            rel="noreferrer"
+            style={styles.buttonPrimary}
+          >
+            Watch on YouTube
+          </a>
+          <a
+            href="https://www.twitch.tv/jvzfrmdablk"
+            target="_blank"
+            rel="noreferrer"
+            style={styles.buttonSecondary}
+          >
+            Watch on Twitch
+          </a>
+        </div>
+
+        <div style={styles.watermark}>JVZ</div>
+      </section>
+
+      <section style={styles.heroBanner}>
+        <div style={{ ...styles.card, ...styles.heroMain }}>
+          <div style={styles.heroGlow} />
+          <div style={styles.eyebrow}>Control Center</div>
+
+          <div style={{ textAlign: "center", position: "relative" }}>
+            <img
+              src="/Speed_Line.png"
+              alt="JVZ Logo"
+              style={{
+                width: "100%",
+                maxWidth: 800,
+                height: "auto",
+                marginBottom: 20,
+                objectFit: "contain",
+                opacity: 0.95,
+                filter: live.isLive
+                  ? "drop-shadow(0 0 40px rgba(239,68,68,0.6)) drop-shadow(0 0 60px rgba(212,175,55,0.5))"
+                  : "drop-shadow(0 0 30px rgba(212,175,55,0.6))",
+                transition: "all 0.4s ease",
+              }}
+            />
+
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                bottom: 0,
+                height: "60%",
+                background: "linear-gradient(to bottom, rgba(0,0,0,0), rgba(5,5,5,1))",
+                pointerEvents: "none",
+              }}
+            />
           </div>
 
-          <div style={styles.topLinks}>
-            <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.tinyLink}>YouTube</a>
-            <a href="https://www.twitch.tv/jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.tinyLink}>Twitch</a>
-            <a href="#" style={styles.tinyLink}>Brand Kit</a>
+          <div style={styles.heroTitle}>
+            Fast decisions, smooth control, and a page built to feel live.
           </div>
-        </section>
-        <section style={{ ...styles.card, ...styles.header, position: "relative", overflow: "hidden" }}>
-          <div>
-            <div style={styles.eyebrow}>Streaming Home Base</div>
-            <h1 style={styles.title}>JVZFrmDaBlk</h1>
-            <p style={styles.subtitle}>
-              Whether I’m behind the wheel or in the middle of a firefight, it’s all about being fast, smooth, and deadly precise.
-            </p>
+          <div style={styles.heroText}>
+            This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
           </div>
-          <div style={{ ...styles.buttonRow, position: "relative", zIndex: 1 }}>
-            <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonPrimary}>
-              Watch on YouTube
-            </a>
-            <a href="https://www.twitch.tv/jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonSecondary}>
-              Watch on Twitch
-            </a>
-          </div>
-                  <div style={styles.watermark}>JVZ</div>
-        </section>
-
-        <section style={styles.heroBanner}>
-          <div style={{ ...styles.card, ...styles.heroMain }}>
-            <div style={styles.heroGlow} />
-            <div style={styles.eyebrow}>Control Center</div>
-<div style={{ textAlign: "center", position: "relative" }}>
-  <img
-    src="/Speed_Line.png"
-    alt="JVZ Logo"
-    style={{
-      width: "100%",
-      maxWidth: 800,
-      height: "auto",
-      marginBottom: 20,
-      objectFit: "contain",
-      opacity: 0.95,
-      filter: live.isLive
-        ? "drop-shadow(0 0 40px rgba(239,68,68,0.6)) drop-shadow(0 0 60px rgba(212,175,55,0.5))"
-        : "drop-shadow(0 0 30px rgba(212,175,55,0.6))",
-      transition: "all 0.4s ease"
-    }}
-  />
-
-  {/* Fade into background */}
-  <div
-    style={{
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      height: "60%",
-      background: "linear-gradient(to bottom, rgba(0,0,0,0), rgba(5,5,5,1))",
-      pointerEvents: "none"
-    }}
-  />
-</div>
-            <div style={styles.heroTitle}>Fast decisions, smooth control, and a page built to feel live.</div>
-            <div style={styles.heroText}>
-              This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
+          <div style={styles.heroStats}>
+            <div style={styles.statCard}>
+              <div style={styles.statValue}>{live.isLive ? "LIVE" : "OFFLINE"}</div>
+              <div style={styles.statLabel}>Current status</div>
             </div>
-            <div style={styles.heroStats}>
-              <div style={styles.statCard}>
-                <div style={styles.statValue}>{live.isLive ? "LIVE" : "OFFLINE"}</div>
-                <div style={styles.statLabel}>Current status</div>
-              </div>
-              <div style={styles.statCard}>
-                <div style={styles.statValue}>{videos.length > 0 ? videos.length : "--"}</div>
-                <div style={styles.statLabel}>Recent videos loaded</div>
-              </div>
-              <div style={styles.statCard}>
-                <div style={styles.statValue}>{live.viewerCount || 0}</div>
-                <div style={styles.statLabel}>Live viewers now</div>
-              </div>
+            <div style={styles.statCard}>
+              <div style={styles.statValue}>{videos.length > 0 ? videos.length : "--"}</div>
+              <div style={styles.statLabel}>Recent videos loaded</div>
+            </div>
+            <div style={styles.statCard}>
+              <div style={styles.statValue}>{live.viewerCount || 0}</div>
+              <div style={styles.statLabel}>Live viewers now</div>
             </div>
           </div>
+        </div>
 
           <div style={{ ...styles.card, ...styles.nowPlaying }}>
             <div style={{ ...styles.liveChip, background: live.isLive ? "rgba(239,68,68,0.14)" : "rgba(255,255,255,0.05)", border: live.isLive ? "1px solid rgba(239,68,68,0.24)" : "1px solid rgba(255,255,255,0.1)" }}>
