@@ -486,7 +486,11 @@ export default function StreamingPlatformWebsite() {
 
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [youtubeLoading, setYoutubeLoading] = useState(true);
-
+  const [youtubeLive, setYouTubeLive] = useState({
+  isLive: false,
+  videoId: "",
+  title: "",
+});
   const schedule = [
     { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
     { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
@@ -520,58 +524,78 @@ export default function StreamingPlatformWebsite() {
   ];
 
   useEffect(() => {
-    let mounted = true;
+  let mounted = true;
 
-    async function loadLiveStatus() {
-      try {
-        const response = await fetch("/api/live-status", { cache: "no-store" });
-        const json = await response.json();
-        if (!mounted) return;
-        setLive({
-          isLive: Boolean(json.isLive),
-          title: json.title || "Live status unavailable",
-          game: json.game || "Could not load Twitch status",
-          viewerCount: json.viewerCount || 0,
-          startedAt: json.startedAt || null,
-          channelLogin: json.channelLogin || "jvzfrmdablk",
-          channelName: json.channelName || "JVZFrmDaBlk",
-          error: json.error,
-        });
-      } catch {
-        if (!mounted) return;
-        setLive({
-          isLive: false,
-          title: "Live status unavailable",
-          game: "Could not load Twitch status",
-          viewerCount: 0,
-          startedAt: null,
-        });
-      }
+  async function loadLiveStatus() {
+    try {
+      const res = await fetch("/api/live-status", { cache: "no-store" });
+      const json = await res.json();
+      if (!mounted) return;
+      setLive(json);
+    } catch {
+      if (!mounted) return;
+      setLive({
+        isLive: false,
+        title: "Unavailable",
+        game: "Could not load Twitch status",
+        viewerCount: 0,
+        startedAt: null,
+      });
     }
+  }
 
-    async function loadYouTubeFeed() {
-      try {
-        const response = await fetch("/api/youtube-feed", { cache: "no-store" });
-        const json = await response.json();
-        if (!mounted) return;
-        setVideos(Array.isArray(json.videos) ? json.videos : []);
-      } catch {
-        if (!mounted) return;
-        setVideos([]);
-      } finally {
-        if (mounted) setYoutubeLoading(false);
-      }
+  async function loadYouTubeFeed() {
+    try {
+      const res = await fetch("/api/youtube-feed", { cache: "no-store" });
+      const json = await res.json();
+      if (!mounted) return;
+      setVideos(Array.isArray(json.videos) ? json.videos : []);
+    } catch {
+      if (!mounted) return;
+      setVideos([]);
+    } finally {
+      if (mounted) setYoutubeLoading(false);
     }
+  }
 
+  // ✅ NEW: YouTube live detection
+  async function loadYouTubeLiveStatus() {
+    try {
+      const res = await fetch("/api/youtube-live-status", { cache: "no-store" });
+      const json = await res.json();
+      if (!mounted) return;
+
+      setYouTubeLive({
+        isLive: Boolean(json.isLive),
+        videoId: json.videoId || "",
+        title: json.title || "",
+      });
+    } catch {
+      if (!mounted) return;
+      setYouTubeLive({
+        isLive: false,
+        videoId: "",
+        title: "",
+      });
+    }
+  }
+
+  // Initial load
+  loadLiveStatus();
+  loadYouTubeFeed();
+  loadYouTubeLiveStatus();
+
+  // Auto refresh every 60s
+  const interval = setInterval(() => {
     loadLiveStatus();
-    loadYouTubeFeed();
-    const interval = setInterval(loadLiveStatus, 60000);
+    loadYouTubeLiveStatus();
+  }, 60000);
 
-    return () => {
-      mounted = false;
-      clearInterval(interval);
-    };
-  }, []);
+  return () => {
+    mounted = false;
+    clearInterval(interval);
+  };
+}, []);
 
   const featuredVideo = videos[0];
   const gridVideos = videos.slice(1, 7);
