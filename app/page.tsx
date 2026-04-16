@@ -907,24 +907,63 @@ export default function StreamingPlatformWebsite() {
             </div>
           </div>
 
-          <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-              <div style={{ fontSize: 28, fontWeight: 900 }}>YouTube Community</div>
-              <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonSecondary}>
-                Open channel
-              </a>
-            </div>
-            <div style={{ ...styles.centerFallback, minHeight: 420, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <div style={{ fontSize: 24, fontWeight: 800 }}>YouTube does not provide a clean live chat embed for this layout.</div>
-              <div style={{ ...styles.muted, marginTop: 12, lineHeight: 1.7 }}>
-                Use this panel as a community hub for YouTube comments, Shorts, channel updates, or a direct jump to your channel page.
-              </div>
-              <div style={{ marginTop: 20 }}>
-                <a href="https://www.youtube.com/@jvzfrmdablk" target="_blank" rel="noreferrer" style={styles.buttonPrimary}>
-                  Go to YouTube
-                </a>
-              </div>
-            </div>
+         <div style={{ ...styles.card, ...styles.panel }}>
+  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+    <div style={{ fontSize: 28, fontWeight: 900 }}>
+      {youtubeLive.isLive ? "YouTube Live Chat" : "YouTube Community"}
+    </div>
+    <a
+      href={
+        youtubeLive.isLive && youtubeLive.videoId
+          ? `https://www.youtube.com/watch?v=${youtubeLive.videoId}`
+          : "https://www.youtube.com/@jvzfrmdablk"
+      }
+      target="_blank"
+      rel="noreferrer"
+      style={styles.buttonSecondary}
+    >
+      {youtubeLive.isLive ? "Open live stream" : "Open channel"}
+    </a>
+  </div>
+
+  {youtubeLive.isLive && youtubeLive.videoId ? (
+    <div style={styles.iframeWrap}>
+      <iframe
+        src={`https://www.youtube.com/live_chat?v=${youtubeLive.videoId}&embed_domain=jvz-website.vercel.app`}
+        style={{ width: "100%", height: 420, border: 0, display: "block" }}
+        title="JVZ YouTube Live Chat"
+      />
+    </div>
+  ) : (
+    <div
+      style={{
+        ...styles.centerFallback,
+        minHeight: 420,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ fontSize: 24, fontWeight: 800 }}>
+        YouTube live chat will appear automatically when the channel is live on YouTube.
+      </div>
+      <div style={{ ...styles.muted, marginTop: 12, lineHeight: 1.7 }}>
+        Right now this panel stays in community mode. When a YouTube live stream is detected,
+        it switches over to the embedded live chat for that active stream.
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <a
+          href="https://www.youtube.com/@jvzfrmdablk"
+          target="_blank"
+          rel="noreferrer"
+          style={styles.buttonPrimary}
+        >
+          Go to YouTube
+        </a>
+      </div>
+    </div>
+  )}
+</div>
           </div>
         </section>
 
