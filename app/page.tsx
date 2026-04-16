@@ -1328,19 +1328,45 @@ return (
   )}
 </div>
         </section>
+<section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
 
-        <section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
-          <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Highlights</div>
-            <div style={styles.highlightsGrid}>
-              {clips.map((clip) => (
-                <div key={clip} style={styles.highlightCard}>
-                  {clip}
-                </div>
-              ))}
-            </div>
-          </div>
+  {/* LEFT: Highlights */}
+  <div style={{ ...styles.card, ...styles.panel }}>
+    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+      Highlights
+    </div>
 
+    <div style={styles.highlightsGrid}>
+      {clips.map((clip) => (
+        <div key={clip} style={styles.highlightCard}>
+          {clip}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* RIGHT: Submit Clip */}
+  <div style={{ ...styles.card, ...styles.panel }}>
+    <div style={styles.smallLabel}>Community</div>
+
+    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+      Submit a Clip
+    </div>
+
+    <div style={{ ...styles.muted, lineHeight: 1.6 }}>
+      Got a funny moment, clutch play, or absolute chaos clip? Send it in and it might get featured on stream or in future videos.
+    </div>
+
+    <div style={{ marginTop: 20 }}>
+      <a
+        href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+        style={styles.buttonPrimary}
+      >
+        Submit Clip
+      </a>
+    </div>
+  </div>
+</section>
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
             {schedule.map((item) => (
