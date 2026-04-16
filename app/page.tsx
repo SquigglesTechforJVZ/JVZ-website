@@ -717,9 +717,6 @@ return (
         </div>
       </section>
       
-        <section style={styles.topBar}>
-
-    {/* EXISTING CONTENT */}
       <section style={styles.topBar}>
         <div style={styles.topBarLeft}>
           <div style={styles.brandPill}>
@@ -729,7 +726,7 @@ return (
               style={{
                 height: 60,
                 objectFit: "contain",
-                filter: "drop-shadow(0 0 12px rgba(212,175,55,0.5))"
+                filter: "drop-shadow(0 0 12px rgba(212,175,55,0.5))",
               }}
             />
             <div style={styles.brandMeta}>
@@ -823,7 +820,6 @@ return (
                 transition: "all 0.4s ease",
               }}
             />
-
             <div
               style={{
                 position: "absolute",
@@ -843,6 +839,7 @@ return (
           <div style={styles.heroText}>
             This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
           </div>
+
           <div style={styles.heroStats}>
             <div style={styles.statCard}>
               <div style={styles.statValue}>{live.isLive ? "LIVE" : "OFFLINE"}</div>
