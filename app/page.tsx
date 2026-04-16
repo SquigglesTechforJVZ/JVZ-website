@@ -716,6 +716,8 @@ return (
           <span>{live.isLive ? `${live.viewerCount || 0} viewers` : "YouTube first • Twitch live"}</span>
         </div>
       </section>
+      
+        <section style={styles.topBar}>
 
     {/* EXISTING CONTENT */}
     <div style={styles.container}>
