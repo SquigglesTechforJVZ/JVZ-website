@@ -843,9 +843,9 @@ const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slic
 
 return (
   <div style={styles.page}>
-    <div style={responsive.container}>
+    <div style={styles.container}>
       {/* 🔴 LIVE STATUS BAR */}
-      <section style={responsive.liveTicker}>
+      <section style={styles.liveTicker}>
         <div style={styles.liveTickerGlow} />
 
         <div style={styles.liveTickerLeft}>
@@ -879,7 +879,7 @@ return (
           </div>
         </div>
 
-        <div style={responsive.liveTickerRight}>
+        <div style={styles.liveTickerRight}>
           <span>{live.isLive ? live.game : "Waiting for the next session"}</span>
           <span>•</span>
           <span>{live.isLive ? `${live.viewerCount || 0} viewers` : "YouTube first • Twitch live"}</span>
