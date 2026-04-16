@@ -1234,10 +1234,14 @@ return (
                   ))}
                 </div>
               </div>
-            ) : (
-              <div style={styles.centerFallback}>Could not load YouTube videos right now.</div>
-            )}
+              ) : (
+          <div style={styles.centerFallback}>
+            Could not load YouTube videos right now.
           </div>
+        )}   // ✅ CLOSES the YouTube conditional
+
+      </div>   // closes panel
+    </section>  // closes YouTube section
 
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={styles.smallLabel}>Featured Games</div>
@@ -1253,7 +1257,7 @@ return (
             </div>
           </div>
         </section>
-
+      
         <section style={styles.gridTwo}>
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
