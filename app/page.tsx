@@ -582,7 +582,15 @@ export default function StreamingPlatformWebsite() {
         <section style={styles.topBar}>
           <div style={styles.topBarLeft}>
             <div style={styles.brandPill}>
-              <div style={styles.brandMark}>JVZ</div>
+           <img
+  src="/Speed_Line.png"
+  alt="JVZFrmDaBlk"
+  style={{
+    height: 40,
+    objectFit: "contain",
+    filter: "drop-shadow(0 0 12px rgba(212,175,55,0.5))"
+  }}
+/>
               <div style={styles.brandMeta}>
                 <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2.5, textTransform: "uppercase", color: "#d4af37" }}>
                   Custom Brand Layer
