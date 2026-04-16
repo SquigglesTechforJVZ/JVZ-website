@@ -840,7 +840,6 @@ useEffect(() => {
 
 const featuredVideo = selectedVideo || videos[0];
 const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slice(0, 6);
-
 return (
   <div style={styles.page}>
     <div style={styles.container}>
