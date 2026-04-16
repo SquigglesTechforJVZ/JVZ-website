@@ -1362,3 +1362,5 @@ return (
   </div>
 </div>
 <section ...>
+);
+}
