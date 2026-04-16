@@ -633,15 +633,20 @@ export default function StreamingPlatformWebsite() {
             <div style={styles.heroGlow} />
             <div style={styles.eyebrow}>Creator Homepage</div>
             <img
-  src="/Speed_Line.png"
-  alt="JVZ Logo"
-  style={{
-    height: 140,
-    marginBottom: 50,
-    objectFit: "contain",
-    filter: "drop-shadow(0 0 25px rgba(212,175,55,0.65))"
-  }}
-/>
+<div style={{ textAlign: "center" }}>
+  <img
+    src="/Speed_Line.png"
+    alt="JVZ Logo"
+    style={{
+      width: "100%",
+      maxWidth: 700,
+      height: "auto",
+      marginBottom: 20,
+      objectFit: "contain",
+      filter: "drop-shadow(0 0 30px rgba(212,175,55,0.7))"
+    }}
+  />
+</div>
             <div style={styles.heroTitle}>Fast decisions, smooth control, and a page built to feel live.</div>
             <div style={styles.heroText}>
               This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
