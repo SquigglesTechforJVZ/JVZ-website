@@ -551,6 +551,8 @@ tickerBadge: {
 };
 
 export default function StreamingPlatformWebsite() {
+const [isMobile, setIsMobile] = useState(false);
+const [isTablet, setIsTablet] = useState(false);
   const [live, setLive] = useState<LiveStatus>({
     isLive: false,
     title: "Loading live status...",
@@ -671,7 +673,17 @@ export default function StreamingPlatformWebsite() {
       clearInterval(interval);
     };
   }, []);
+useEffect(() => {
+  function handleResize() {
+    const width = window.innerWidth;
+    setIsMobile(width < 768);
+    setIsTablet(width >= 768 && width < 1100);
+  }
 
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
   const responsive = useMemo(() => ({
     container: {
       ...styles.container,
