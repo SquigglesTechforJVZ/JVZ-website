@@ -568,6 +568,7 @@ const [isTablet, setIsTablet] = useState(false);
   videoId: "",
   title: "",
 });
+  const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
   const schedule = [
     { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
     { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
@@ -832,9 +833,13 @@ useEffect(() => {
     } as CSSProperties,
   }), [isMobile, isTablet]);
 
-const featuredVideo = videos[0];
-const gridVideos = videos.slice(1, 7);
-
+const featuredVideo = selectedVideo || videos[0];
+const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slice(0, 6);
+useEffect(() => {
+  if (!selectedVideo && videos.length > 0) {
+    setSelectedVideo(videos[0]);
+  }
+}, [videos, selectedVideo]);
 return (
   <div style={styles.page}>
     <div style={styles.container}>
@@ -1153,24 +1158,68 @@ return (
               <div style={styles.centerFallback}>Loading YouTube videos...</div>
             ) : videos.length > 0 ? (
               <div style={styles.youtubeLayout}>
-                <a href={featuredVideo?.url} target="_blank" rel="noreferrer" style={styles.featuredVideo}>
-                  <div style={styles.featuredVideoImageWrap}>
-                    {featuredVideo?.thumbnail ? <img src={featuredVideo.thumbnail} alt={featuredVideo.title} style={styles.featuredVideoImg} /> : null}
-                    <div style={styles.overlayGradient} />
-                    <div style={styles.overlayBadge}>Featured Upload</div>
-                    <div style={styles.overlayTitleWrap}>
-                      <div style={{ fontSize: 34, fontWeight: 900, lineHeight: 1.15 }}>{featuredVideo?.title}</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: 20 }}>
-                    <div style={styles.smallLabel}>Latest pull from your YouTube feed</div>
-                    <div style={styles.muted}>Your newest upload gets hero placement automatically so the page always feels current.</div>
-                  </div>
-                </a>
+<div style={styles.featuredVideo}>
+  <div style={styles.featuredVideoImageWrap}>
+    {featuredVideo?.id ? (
+      <iframe
+        src={`https://www.youtube.com/embed/${featuredVideo.id}`}
+        title={featuredVideo.title}
+        style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    ) : featuredVideo?.thumbnail ? (
+      <img
+        src={featuredVideo.thumbnail}
+        alt={featuredVideo.title}
+        style={styles.featuredVideoImg}
+      />
+    ) : null}
+  </div>
+
+  <div style={{ padding: 20 }}>
+    <div style={styles.smallLabel}>Featured Video Player</div>
+
+    <div style={{ fontSize: 24, fontWeight: 900, lineHeight: 1.25 }}>
+      {featuredVideo?.title}
+    </div>
+
+    <div style={{ ...styles.muted, marginTop: 10 }}>
+      Click any video card to load it here without leaving the site.
+    </div>
+
+    {featuredVideo?.url && (
+      <div style={{ marginTop: 16 }}>
+        <a
+          href={featuredVideo.url}
+          target="_blank"
+          rel="noreferrer"
+          style={styles.buttonSecondary}
+        >
+          Open on YouTube
+        </a>
+      </div>
+    )}
+  </div>
+</div>
 
                 <div style={styles.sideVideoList}>
                   {gridVideos.map((video, index) => (
-                    <a key={video.id} href={video.url} target="_blank" rel="noreferrer" style={styles.sideVideoCard}>
+                   <button
+  key={video.id}
+  onClick={() => setSelectedVideo(video)}
+  style={{
+    ...styles.sideVideoCard,
+    cursor: "pointer",
+    width: "100%",
+    textAlign: "left",
+    appearance: "none",
+    borderWidth: selectedVideo?.id === video.id ? 2 : 1,
+    borderColor: selectedVideo?.id === video.id
+      ? "rgba(212,175,55,0.5)"
+      : "rgba(255,255,255,0.08)",
+  }}
+>
                       <div style={styles.thumbWrap}>
                         {video.thumbnail ? <img src={video.thumbnail} alt={video.title} style={styles.thumbImg} /> : null}
                         <div style={{ ...styles.overlayBadge, top: 8, left: 8, fontSize: 10, padding: "4px 8px" }}>0{index + 1}</div>
@@ -1180,7 +1229,7 @@ return (
                         <div style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.4 }}>{video.title}</div>
                         <div style={{ ...styles.muted, marginTop: 10, fontSize: 13 }}>Latest upload from the channel feed.</div>
                       </div>
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>
