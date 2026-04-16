@@ -685,6 +685,11 @@ useEffect(() => {
   window.addEventListener("resize", handleResize);
   return () => window.removeEventListener("resize", handleResize);
 }, []);
+  useEffect(() => {
+  if (!selectedVideo && videos.length > 0) {
+    setSelectedVideo(videos[0]);
+  }
+}, [videos, selectedVideo]);
   const responsive = useMemo(() => ({
     container: {
       ...styles.container,
@@ -835,11 +840,7 @@ useEffect(() => {
 
 const featuredVideo = selectedVideo || videos[0];
 const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slice(0, 6);
-useEffect(() => {
-  if (!selectedVideo && videos.length > 0) {
-    setSelectedVideo(videos[0]);
-  }
-}, [videos, selectedVideo]);
+
 return (
   <div style={styles.page}>
     <div style={styles.container}>
