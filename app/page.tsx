@@ -632,7 +632,6 @@ export default function StreamingPlatformWebsite() {
           <div style={{ ...styles.card, ...styles.heroMain }}>
             <div style={styles.heroGlow} />
             <div style={styles.eyebrow}>Creator Homepage</div>
-            <img
 <div style={{ textAlign: "center" }}>
   <img
     src="/Speed_Line.png"
