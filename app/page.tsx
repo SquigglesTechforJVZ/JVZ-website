@@ -964,7 +964,6 @@ export default function StreamingPlatformWebsite() {
     </div>
   )}
 </div>
-          </div>
         </section>
 
         <section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
