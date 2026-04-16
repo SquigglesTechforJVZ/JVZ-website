@@ -569,11 +569,17 @@ const [isTablet, setIsTablet] = useState(false);
   title: "",
 });
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
-  const schedule = [
-    { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
-    { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
-    { day: "Friday", time: "9:00 PM ET", title: "Late Night Chaos" },
-    { day: "Sunday", time: "6:00 PM ET", title: "Chill Stream + Recap" },
+  const submitAClip = [
+<div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+  Highlights
+</div>
+
+<a
+  href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+  style={{ ...styles.buttonPrimary, marginBottom: 12 }}
+>
+  Submit a Clip
+</a>
   ];
 
   const clips = [
@@ -1350,18 +1356,15 @@ return (
             </div>
           </div>
 
-        <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
-            {schedule.map((item) => (
-              <div key={item.day} style={styles.scheduleRow}>
-                <div>{item.day}</div>
-                <div style={styles.muted}>{item.time}</div>
-                <div style={{ color: "#f4d03f" }}>{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+ <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+  Highlights
+</div>
+
+<a
+  href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+  style={{ ...styles.buttonPrimary, marginBottom: 12 }}
+>
+  Submit a Clip
+</a>
   );
 }
