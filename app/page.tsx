@@ -1342,17 +1342,24 @@ return (
           </div>
 
           <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
-            {schedule.map((item) => (
-              <div key={item.day} style={styles.scheduleRow}>
-                <div>{item.day}</div>
-                <div style={styles.muted}>{item.time}</div>
-                <div style={{ color: "#f4d03f" }}>{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+  <div style={styles.smallLabel}>Community</div>
+
+  <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+    Submit a Clip
+  </div>
+
+  <div style={{ ...styles.muted, lineHeight: 1.6 }}>
+    Got a funny moment, clutch play, or absolute chaos clip? Send it in and it might get featured on stream or in future videos.
+  </div>
+
+  <div style={{ marginTop: 20 }}>
+    <a
+      href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+      style={styles.buttonPrimary}
+    >
+      Submit Clip
+    </a>
+  </div>
+</div>
   );
 }
