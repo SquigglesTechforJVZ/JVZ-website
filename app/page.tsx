@@ -1090,10 +1090,11 @@ return (
           <div style={styles.centerFallback}>
             Could not load YouTube videos right now.
           </div>
-        )}   // ✅ CLOSES the YouTube conditional
+    
+        )}   // closes conditional
 
-      </div>   // closes panel
-    </section>  // closes YouTube section
+      </div>   // ✅ closes styles.card / styles.panel
+    </section> // ✅ closes section
 
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={styles.smallLabel}>Featured Games</div>
@@ -1185,6 +1186,7 @@ return (
   )}
 </div>
         </section>
+    
 <section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
 
   {/* LEFT: Highlights */}
@@ -1224,6 +1226,7 @@ return (
     </div>
   </div>
 </section>
+    <section style={styles.gridTwo}>
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
             {schedule.map((item) => (
