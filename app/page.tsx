@@ -101,10 +101,11 @@ const styles: Record<string, CSSProperties> = {
     color: "#ffffff",
     fontFamily: "Arial, Helvetica, sans-serif",
   },
-  container: {
-    maxWidth: 1320,
-    margin: "0 auto",
-    padding: "24px",
+container: {
+  maxWidth: 1320,
+  margin: "0 auto",
+  padding: "24px",
+  paddingTop: "12px",
   },
   sectionGap: {
     marginBottom: 24,
@@ -485,7 +486,9 @@ const styles: Record<string, CSSProperties> = {
   background: "linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))",
   boxShadow: "0 0 18px rgba(120,105,30,0.08)",
   overflow: "hidden",
-  position: "relative",
+  position: "sticky",
+  top: 12,
+  zIndex: 999,
 },
 liveTickerGlow: {
   position: "absolute",
