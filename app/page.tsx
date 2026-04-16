@@ -593,13 +593,11 @@ export default function StreamingPlatformWebsite() {
 />
               <div style={styles.brandMeta}>
                 <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 2.5, textTransform: "uppercase", color: "#d4af37" }}>
-                  Custom Brand Layer
                 </span>
                 <span style={{ fontSize: 14, fontWeight: 800, color: "#ffffff" }}>JVZFrmDaBlk</span>
               </div>
             </div>
             <div style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
-              Clean esports identity • dark stealth finish
             </div>
           </div>
 
@@ -631,7 +629,7 @@ export default function StreamingPlatformWebsite() {
         <section style={styles.heroBanner}>
           <div style={{ ...styles.card, ...styles.heroMain }}>
             <div style={styles.heroGlow} />
-            <div style={styles.eyebrow}>Creator Homepage</div>
+            <div style={styles.eyebrow}>Control Center</div>
 <div style={{ textAlign: "center", position: "relative" }}>
   <img
     src="/Speed_Line.png"
@@ -696,7 +694,7 @@ export default function StreamingPlatformWebsite() {
             <div style={styles.sideKpi}>
               <div style={styles.sideMiniCard}>
                 <div style={styles.smallLabel}>Primary Platform</div>
-                <div style={{ fontSize: 22, fontWeight: 800 }}>YouTube First</div>
+                <div style={{ fontSize: 22, fontWeight: 800 }}>YouTube</div>
                 <div style={{ ...styles.muted, marginTop: 8 }}>Uploads, featured content, and hero placement lead the page.</div>
               </div>
               <div style={styles.sideMiniCard}>
