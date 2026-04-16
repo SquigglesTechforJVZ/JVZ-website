@@ -964,8 +964,17 @@ return (
         </div>
 
         <div style={styles.watermark}>JVZ</div>
+        <a
+  href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+  style={{
+    ...styles.buttonSecondary,
+    marginLeft: 10,
+  }}
+>
+  Submit a Clip
+</a>
       </section>
-
+      
       <section style={styles.heroBanner}>
         <div style={{ ...styles.card, ...styles.heroMain }}>
           <div style={styles.heroGlow} />
