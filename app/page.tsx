@@ -632,17 +632,34 @@ export default function StreamingPlatformWebsite() {
           <div style={{ ...styles.card, ...styles.heroMain }}>
             <div style={styles.heroGlow} />
             <div style={styles.eyebrow}>Creator Homepage</div>
-<div style={{ textAlign: "center" }}>
+<div style={{ textAlign: "center", position: "relative" }}>
   <img
     src="/Speed_Line.png"
     alt="JVZ Logo"
     style={{
       width: "100%",
-      maxWidth: 700,
+      maxWidth: 800,
       height: "auto",
       marginBottom: 20,
       objectFit: "contain",
-      filter: "drop-shadow(0 0 30px rgba(212,175,55,0.7))"
+      opacity: 0.95,
+      filter: live.isLive
+        ? "drop-shadow(0 0 40px rgba(239,68,68,0.6)) drop-shadow(0 0 60px rgba(212,175,55,0.5))"
+        : "drop-shadow(0 0 30px rgba(212,175,55,0.6))",
+      transition: "all 0.4s ease"
+    }}
+  />
+
+  {/* Fade into background */}
+  <div
+    style={{
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: "60%",
+      background: "linear-gradient(to bottom, rgba(0,0,0,0), rgba(5,5,5,1))",
+      pointerEvents: "none"
     }}
   />
 </div>
