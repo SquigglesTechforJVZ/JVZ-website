@@ -1361,6 +1361,6 @@ return (
     </a>
   </div>
 </div>
-<section ...>
+        </section>section>
 );
 }
