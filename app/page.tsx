@@ -669,42 +669,53 @@ export default function StreamingPlatformWebsite() {
   };
 }, []);
 
-  const featuredVideo = videos[0];
-  const gridVideos = videos.slice(1, 7);
+const featuredVideo = videos[0];
+const gridVideos = videos.slice(1, 7);
 
-  return (
-    <div style={styles.page}>
-      
-    {/* 🔴 LIVE STATUS BAR */}
-    <section style={styles.liveTicker}>
-      <div style={styles.liveTickerGlow} />
+return (
+  <div style={styles.page}>
+    <div style={styles.container}>
+      {/* 🔴 LIVE STATUS BAR */}
+      <section style={styles.liveTicker}>
+        <div style={styles.liveTickerGlow} />
 
-      <div style={styles.liveTickerLeft}>
-        <span
-          style={{
-            ...styles.tickerBadge,
-            background: live.isLive
-              ? "rgba(239,68,68,0.16)"
-              : "rgba(255,255,255,0.05)",
-            border: live.isLive
-              ? "1px solid rgba(239,68,68,0.28)"
-              : "1px solid rgba(255,255,255,0.1)",
-          }}
-        >
-          {live.isLive ? "🔴 LIVE" : "OFFLINE"}
-        </span>
+        <div style={styles.liveTickerLeft}>
+          <span
+            style={{
+              ...styles.tickerBadge,
+              background: live.isLive
+                ? "rgba(239,68,68,0.16)"
+                : "rgba(255,255,255,0.05)",
+              border: live.isLive
+                ? "1px solid rgba(239,68,68,0.28)"
+                : "1px solid rgba(255,255,255,0.1)",
+              color: live.isLive ? "#fecaca" : "#ffffff",
+            }}
+          >
+            {live.isLive ? (
+              <>
+                <span style={styles.pulseWrap}>
+                  <span style={styles.pulseRing} />
+                  <span style={styles.pulseDot} />
+                </span>
+                LIVE NOW
+              </>
+            ) : (
+              "OFFLINE"
+            )}
+          </span>
 
-        <div style={{ fontWeight: 800 }}>
-          {live.isLive ? live.title : "Locked in soon."}
+          <div style={{ fontWeight: 800 }}>
+            {live.isLive ? live.title : "JVZFrmDaBlk is locked in for the next session."}
+          </div>
         </div>
-      </div>
 
-      <div style={styles.liveTickerRight}>
-        {live.isLive
-          ? `${live.viewerCount || 0} viewers`
-          : "YouTube first • Twitch live"}
-      </div>
-    </section>
+        <div style={styles.liveTickerRight}>
+          <span>{live.isLive ? live.game : "Waiting for the next session"}</span>
+          <span>•</span>
+          <span>{live.isLive ? `${live.viewerCount || 0} viewers` : "YouTube first • Twitch live"}</span>
+        </div>
+      </section>
 
     {/* EXISTING CONTENT */}
     <div style={styles.container}>
