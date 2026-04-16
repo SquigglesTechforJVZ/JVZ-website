@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
 type LiveStatus = {
   isLive: boolean;
@@ -685,14 +685,161 @@ useEffect(() => {
   window.addEventListener("resize", handleResize);
   return () => window.removeEventListener("resize", handleResize);
 }, []);
-  useEffect(() => {
+  const responsive = useMemo(() => ({
+    container: {
+      ...styles.container,
+      padding: isMobile ? "14px" : isTablet ? "18px" : "24px",
+      paddingTop: isMobile ? "10px" : "12px",
+    } as CSSProperties,
+    liveTicker: {
+      ...styles.liveTicker,
+      top: isMobile ? 8 : 12,
+      padding: isMobile ? "12px 14px" : "14px 18px",
+      flexDirection: isMobile ? "column" : "row",
+      alignItems: isMobile ? "flex-start" : "center",
+      gap: isMobile ? 10 : 16,
+    } as CSSProperties,
+    liveTickerRight: {
+      ...styles.liveTickerRight,
+      width: isMobile ? "100%" : "auto",
+      justifyContent: isMobile ? "space-between" : "flex-start",
+      flexWrap: "wrap",
+      fontSize: isMobile ? 12 : 13,
+    } as CSSProperties,
+    header: {
+      ...styles.header,
+      padding: isMobile ? 18 : 28,
+      gap: isMobile ? 14 : 18,
+    } as CSSProperties,
+    title: {
+      ...styles.title,
+      fontSize: isMobile ? 34 : isTablet ? 44 : 56,
+      lineHeight: isMobile ? 1.02 : 0.95,
+    } as CSSProperties,
+    subtitle: {
+      ...styles.subtitle,
+      fontSize: isMobile ? 16 : isTablet ? 18 : 20,
+      lineHeight: isMobile ? 1.5 : 1.55,
+      maxWidth: isMobile ? "100%" : 760,
+    } as CSSProperties,
+    buttonRow: {
+      ...styles.buttonRow,
+      width: isMobile ? "100%" : "auto",
+    } as CSSProperties,
+    buttonPrimary: {
+      ...styles.buttonPrimary,
+      width: isMobile ? "100%" : "auto",
+      textAlign: "center",
+      padding: isMobile ? "13px 16px" : "14px 22px",
+    } as CSSProperties,
+    buttonSecondary: {
+      ...styles.buttonSecondary,
+      width: isMobile ? "100%" : "auto",
+      textAlign: "center",
+      padding: isMobile ? "13px 16px" : "14px 22px",
+    } as CSSProperties,
+    heroBanner: {
+      ...styles.heroBanner,
+      gridTemplateColumns: isMobile || isTablet ? "1fr" : "1.15fr 0.85fr",
+      gap: isMobile ? 16 : 24,
+    } as CSSProperties,
+    heroMain: {
+      ...styles.heroMain,
+      padding: isMobile ? 18 : 24,
+      minHeight: isMobile ? 0 : 380,
+    } as CSSProperties,
+    heroTitle: {
+      ...styles.heroTitle,
+      fontSize: isMobile ? 28 : isTablet ? 34 : 40,
+      maxWidth: "100%",
+      margin: isMobile ? "8px 0 12px 0" : "10px 0 14px 0",
+    } as CSSProperties,
+    heroText: {
+      ...styles.heroText,
+      fontSize: isMobile ? 15 : 16,
+      maxWidth: "100%",
+    } as CSSProperties,
+    heroStats: {
+      ...styles.heroStats,
+      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
+      gap: isMobile ? 10 : 14,
+    } as CSSProperties,
+    grid3: {
+      ...styles.grid3,
+      gridTemplateColumns: isMobile || isTablet ? "1fr" : "repeat(3, minmax(0, 1fr))",
+      gap: isMobile ? 12 : 16,
+    } as CSSProperties,
+    gridMainSide: {
+      ...styles.gridMainSide,
+      gridTemplateColumns: isMobile || isTablet ? "1fr" : "1.22fr 0.78fr",
+      gap: isMobile ? 16 : 24,
+    } as CSSProperties,
+    gridTwo: {
+      ...styles.gridTwo,
+      gridTemplateColumns: isMobile || isTablet ? "1fr" : "1fr 1fr",
+      gap: isMobile ? 16 : 24,
+    } as CSSProperties,
+    panel: {
+      ...styles.panel,
+      padding: isMobile ? 16 : 22,
+    } as CSSProperties,
+    sectionTitle: {
+      ...styles.sectionTitle,
+      fontSize: isMobile ? 26 : isTablet ? 30 : 34,
+    } as CSSProperties,
+    youtubeLayout: {
+      ...styles.youtubeLayout,
+      gridTemplateColumns: isMobile || isTablet ? "1fr" : "1.08fr 0.92fr",
+      gap: isMobile ? 12 : 16,
+    } as CSSProperties,
+    overlayTitle: {
+      fontSize: isMobile ? 22 : isTablet ? 28 : 34,
+      fontWeight: 900,
+      lineHeight: 1.15,
+    } as CSSProperties,
+    sideVideoCard: {
+      ...styles.sideVideoCard,
+      flexDirection: isMobile ? "column" : "row",
+      padding: isMobile ? 10 : 12,
+    } as CSSProperties,
+    thumbWrap: {
+      ...styles.thumbWrap,
+      width: isMobile ? "100%" : 160,
+      height: isMobile ? 180 : 96,
+    } as CSSProperties,
+    aboutCards: {
+      ...styles.aboutCards,
+    } as CSSProperties,
+    gameList: {
+      ...styles.gameList,
+    } as CSSProperties,
+    chatHeight: isMobile ? 320 : isTablet ? 380 : 420,
+    highlightsGrid: {
+      ...styles.highlightsGrid,
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: isMobile ? 10 : 14,
+    } as CSSProperties,
+    scheduleRow: {
+      ...styles.scheduleRow,
+      gridTemplateColumns: isMobile ? "1fr" : "0.9fr 0.8fr 1.1fr",
+      gap: isMobile ? 4 : 12,
+      padding: isMobile ? "10px 0" : "12px 0",
+    } as CSSProperties,
+    watermark: {
+      ...styles.watermark,
+      fontSize: isMobile ? 72 : isTablet ? 96 : 120,
+      right: isMobile ? -10 : -20,
+      bottom: isMobile ? -8 : -28,
+    } as CSSProperties,
+  }), [isMobile, isTablet]);
+
+const featuredVideo = selectedVideo || videos[0];
+const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slice(0, 6);
+useEffect(() => {
   if (!selectedVideo && videos.length > 0) {
     setSelectedVideo(videos[0]);
   }
 }, [videos, selectedVideo]);
-
-const featuredVideo = selectedVideo || videos[0];
-const gridVideos = videos.filter((video) => video.id !== featuredVideo?.id).slice(0, 6);
 return (
   <div style={styles.page}>
     <div style={styles.container}>
@@ -1086,15 +1233,10 @@ return (
                   ))}
                 </div>
               </div>
-              ) : (
-          <div style={styles.centerFallback}>
-            Could not load YouTube videos right now.
+            ) : (
+              <div style={styles.centerFallback}>Could not load YouTube videos right now.</div>
+            )}
           </div>
-    
-        )}   // closes conditional
-
-      </div>   // ✅ closes styles.card / styles.panel
-    </section> // ✅ closes section
 
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={styles.smallLabel}>Featured Games</div>
@@ -1110,7 +1252,7 @@ return (
             </div>
           </div>
         </section>
-      
+
         <section style={styles.gridTwo}>
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
@@ -1186,47 +1328,19 @@ return (
   )}
 </div>
         </section>
-    
-<section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
 
-  {/* LEFT: Highlights */}
-  <div style={{ ...styles.card, ...styles.panel }}>
-    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
-      Highlights
-    </div>
+        <section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
+          <div style={{ ...styles.card, ...styles.panel }}>
+            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Highlights</div>
+            <div style={styles.highlightsGrid}>
+              {clips.map((clip) => (
+                <div key={clip} style={styles.highlightCard}>
+                  {clip}
+                </div>
+              ))}
+            </div>
+          </div>
 
-    <div style={styles.highlightsGrid}>
-      {clips.map((clip) => (
-        <div key={clip} style={styles.highlightCard}>
-          {clip}
-        </div>
-      ))}
-    </div>
-  </div>
-
-  {/* RIGHT: Submit Clip */}
-  <div style={{ ...styles.card, ...styles.panel }}>
-    <div style={styles.smallLabel}>Community</div>
-
-    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
-      Submit a Clip
-    </div>
-
-    <div style={{ ...styles.muted, lineHeight: 1.6 }}>
-      Got a funny moment, clutch play, or absolute chaos clip? Send it in and it might get featured on stream or in future videos.
-    </div>
-
-    <div style={{ marginTop: 20 }}>
-      <a
-        href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
-        style={styles.buttonPrimary}
-      >
-        Submit Clip
-      </a>
-    </div>
-  </div>
-</section>
-    <section style={styles.gridTwo}>
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
             {schedule.map((item) => (
