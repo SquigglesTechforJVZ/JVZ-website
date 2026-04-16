@@ -636,8 +636,8 @@ export default function StreamingPlatformWebsite() {
   src="/Speed_Line.png"
   alt="JVZ Logo"
   style={{
-    height: 110,
-    marginBottom: 10,
+    height: 140,
+    marginBottom: 50,
     objectFit: "contain",
     filter: "drop-shadow(0 0 25px rgba(212,175,55,0.65))"
   }}
