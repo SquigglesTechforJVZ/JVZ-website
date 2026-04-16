@@ -602,6 +602,43 @@ export default function StreamingPlatformWebsite() {
 
   return (
     <div style={styles.page}>
+      return (
+  <div style={styles.page}>
+
+    {/* 🔴 LIVE STATUS BAR */}
+    <section style={styles.liveTicker}>
+      <div style={styles.liveTickerGlow} />
+
+      <div style={styles.liveTickerLeft}>
+        <span
+          style={{
+            ...styles.tickerBadge,
+            background: live.isLive
+              ? "rgba(239,68,68,0.16)"
+              : "rgba(255,255,255,0.05)",
+            border: live.isLive
+              ? "1px solid rgba(239,68,68,0.28)"
+              : "1px solid rgba(255,255,255,0.1)",
+          }}
+        >
+          {live.isLive ? "🔴 LIVE" : "OFFLINE"}
+        </span>
+
+        <div style={{ fontWeight: 800 }}>
+          {live.isLive ? live.title : "Locked in soon."}
+        </div>
+      </div>
+
+      <div style={styles.liveTickerRight}>
+        {live.isLive
+          ? `${live.viewerCount || 0} viewers`
+          : "YouTube first • Twitch live"}
+      </div>
+    </section>
+
+    {/* EXISTING CONTENT */}
+    <div style={styles.container}>
+      <section style={styles.topBar}>
       <div style={styles.container}>
         <section style={styles.topBar}>
           <div style={styles.topBarLeft}>
