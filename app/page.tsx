@@ -1009,7 +1009,8 @@ return (
             Fast decisions, smooth control, and a page built to feel live.
           </div>
           <div style={styles.heroText}>
-            This homepage brings your stream, your uploads, and your identity together in one place so viewers immediately know what to watch, where to click, and what your channel is about.
+            Welcome to my control center!
+From the track to every battlefield...I started in racing, now I’m taking that same precision into every game I touch — from high-speed runs to full-on chaos in shooters like ARC Raiders and beyond.
           </div>
 
           <div style={styles.heroStats}>
