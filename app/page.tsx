@@ -569,12 +569,6 @@ const [isTablet, setIsTablet] = useState(false);
   title: "",
 });
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
-  const schedule = [
-    { https://www.facebook.com/profile.php?id=61587272157868 },
-    { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
-    { day: "Friday", time: "9:00 PM ET", title: "Late Night Chaos" },
-    { day: "Sunday", time: "6:00 PM ET", title: "Chill Stream + Recap" },
-  ];
 
   const clips = [
     "Big clutch moment",
@@ -1350,18 +1344,18 @@ return (
             </div>
           </div>
 
-        <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
-            {schedule.map((item) => (
-              <div key={item.day} style={styles.scheduleRow}>
-                <div>{item.day}</div>
-                <div style={styles.muted}>{item.time}</div>
-                <div style={{ color: "#f4d03f" }}>{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
+       <section>
+  <div style={{ ...styles.card, ...styles.panel }}>
+    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+      Stream Schedule
     </div>
-  );
-}
+
+    {schedule.map((item) => (
+      <div key={item.day} style={styles.scheduleRow}>
+        <div>{item.day}</div>
+        <div style={styles.muted}>{item.time}</div>
+        <div style={{ color: "#f4d03f" }}>{item.title}</div>
+      </div>
+    ))}
+  </div>
+</section>
