@@ -1381,7 +1381,7 @@ return (
       </a>
 
       <a
-        href="PASTE_FACEBOOK_LINK_HERE"
+        href="https://www.facebook.com/profile.php?id=61587272157868"
         target="_blank"
         rel="noreferrer"
         style={styles.buttonSecondary}
