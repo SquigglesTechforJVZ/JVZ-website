@@ -1043,11 +1043,11 @@ From the track to every battlefield...I started in racing, now I’m taking that
               <div style={styles.sideMiniCard}>
                 <div style={styles.smallLabel}>Primary Platform</div>
                 <div style={{ fontSize: 22, fontWeight: 800 }}>YouTube</div>
-                <div style={{ ...styles.muted, marginTop: 8 }}>Uploads, featured content, and good vibes.</div>
+                <div style={{ ...styles.muted, marginTop: 8 }}>Uploads, featured content, and hero placement lead the page.</div>
               </div>
               <div style={styles.sideMiniCard}>
                 <div style={styles.smallLabel}>Live Focus</div>
-                <div style={{ fontSize: 22, fontWeight: 800 }}>YouTube or Twitch Broadcast</div>
+                <div style={{ fontSize: 22, fontWeight: 800 }}>Twitch Broadcast</div>
                 <div style={{ ...styles.muted, marginTop: 8 }}>When the stream is on, this is where the real-time action happens.</div>
               </div>
             </div>
@@ -1074,10 +1074,9 @@ From the track to every battlefield...I started in racing, now I’m taking that
             <div style={styles.smallLabel}>Current Title</div>
             <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1.3 }}>{live.title}</div>
             <div style={{ ...styles.muted, marginTop: 10 }}>
-              {live.isLive ? "Pulled live from Twitch automatically."} 
-                 : "Updates automatically when the stream goes live."}
-  </div>
-</div>
+              {live.isLive ? "Pulled live from Twitch automatically." : "This updates automatically when the channel goes live."}
+            </div>
+          </div>
 
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={styles.smallLabel}>Current Focus</div>
@@ -1153,7 +1152,7 @@ From the track to every battlefield...I started in racing, now I’m taking that
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, gap: 12, flexWrap: "wrap" }}>
               <div>
                 <div style={styles.smallLabel}>YouTube Grid</div>
-                <div style={{ fontSize: 30, fontWeight: 900 }}>Latest uploads, in case you missed out.</div>
+                <div style={{ fontSize: 30, fontWeight: 900 }}>Latest uploads, built like a real creator hub.</div>
               </div>
               <a href="https://www.youtube.com/@jvzfrmdablk/videos" target="_blank" rel="noreferrer" style={styles.buttonSecondary}>
                 View all videos
@@ -1314,10 +1313,11 @@ From the track to every battlefield...I started in racing, now I’m taking that
       }}
     >
       <div style={{ fontSize: 24, fontWeight: 800 }}>
-        Youtube Community  
+        YouTube live chat will appear automatically when the channel is live on YouTube.
       </div>
       <div style={{ ...styles.muted, marginTop: 12, lineHeight: 1.7 }}>
-        Community mode until YouTube live stream is detected.
+        Right now this panel stays in community mode. When a YouTube live stream is detected,
+        it switches over to the embedded live chat for that active stream.
       </div>
       <div style={{ marginTop: 20 }}>
         <a
