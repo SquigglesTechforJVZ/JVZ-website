@@ -1388,7 +1388,23 @@ return (
       >
         Facebook
       </a>
+<a
+  href="https://www.instagram.com/jvzfrmdablk/"
+  target="_blank"
+  rel="noreferrer"
+  style={styles.buttonSecondary}
+>
+  Instagram
+</a>
 
+<a
+  href="https://www.tiktok.com/@JVZFrmDaBlk?fbclid=IwY2xjawROtK1leHRuA2FlbQIxMABicmlkETFXVDJaMEpON0I2WWRXUUk3c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlCW8_3vtvIRdOqiUgVkq6DM88M2dJwrhxxfNO2AJYdSWENWZnOGUaI-k60R_aem_TEdt08XBLQ87PvUjDC52Yw"
+  target="_blank"
+  rel="noreferrer"
+  style={styles.buttonSecondary}
+>
+  TikTok
+</a>
       <a
         href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Contact"
         style={styles.buttonSecondary}
