@@ -569,12 +569,7 @@ const [isTablet, setIsTablet] = useState(false);
   title: "",
 });
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
-  const schedule = [
-    { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
-    { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
-    { day: "Friday", time: "9:00 PM ET", title: "Late Night Chaos" },
-    { day: "Sunday", time: "6:00 PM ET", title: "Chill Stream + Recap" },
-  ];
+
 
   const clips = [
     "Big clutch moment",
@@ -1338,29 +1333,78 @@ return (
 </div>
         </section>
 
-        <section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
-          <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Highlights</div>
-            <div style={styles.highlightsGrid}>
-              {clips.map((clip) => (
-                <div key={clip} style={styles.highlightCard}>
-                  {clip}
-                </div>
-              ))}
-            </div>
-          </div>
+<section style={{ ...styles.gridMainSide, gridTemplateColumns: "1fr 0.9fr" }}>
+  {/* LEFT: Highlights */}
+  <div style={{ ...styles.card, ...styles.panel }}>
+    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+      Highlights
+    </div>
 
-        <div style={{ ...styles.card, ...styles.panel }}>
-            <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>Schedule</div>
-            {schedule.map((item) => (
-              <div key={item.day} style={styles.scheduleRow}>
-                <div>{item.day}</div>
-                <div style={styles.muted}>{item.time}</div>
-                <div style={{ color: "#f4d03f" }}>{item.title}</div>
-              </div>
-            ))}
-          </div>
-        </section>
+    <div style={styles.highlightsGrid}>
+      {clips.map((clip) => (
+        <div key={clip} style={styles.highlightCard}>
+          {clip}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* RIGHT: Stay Connected */}
+  <div style={{ ...styles.card, ...styles.panel }}>
+    <div style={styles.smallLabel}>Community</div>
+
+    <div style={{ fontSize: 30, fontWeight: 900, marginBottom: 16 }}>
+      Stay Connected
+    </div>
+
+    <div style={{ ...styles.muted, lineHeight: 1.6, marginBottom: 18 }}>
+      Follow, watch, and stay locked in with the channel across all platforms.
+    </div>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      <a
+        href="https://www.youtube.com/@jvzfrmdablk"
+        target="_blank"
+        rel="noreferrer"
+        style={styles.buttonSecondary}
+      >
+        YouTube
+      </a>
+
+      <a
+        href="https://www.twitch.tv/jvzfrmdablk"
+        target="_blank"
+        rel="noreferrer"
+        style={styles.buttonSecondary}
+      >
+        Twitch
+      </a>
+
+      <a
+        href="PASTE_FACEBOOK_LINK_HERE"
+        target="_blank"
+        rel="noreferrer"
+        style={styles.buttonSecondary}
+      >
+        Facebook
+      </a>
+
+      <a
+        href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Contact"
+        style={styles.buttonSecondary}
+      >
+        Contact / Business
+      </a>
+
+      <a
+        href="mailto:jvzfrmdablk.business.inquiries@gmail.com?subject=JVZ Clip Submission&body=Clip Link:%0A%0APlatform:%0A%0ATimestamp:%0A%0ADescription:"
+        style={styles.buttonPrimary}
+      >
+        Submit a Clip
+      </a>
+    </div>
+  </div>
+</section>
       </div>
     </div>
   );
