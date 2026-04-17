@@ -1075,8 +1075,9 @@ From the track to every battlefield...I started in racing, now I’m taking that
             <div style={{ fontSize: 24, fontWeight: 800, lineHeight: 1.3 }}>{live.title}</div>
             <div style={{ ...styles.muted, marginTop: 10 }}>
               {live.isLive ? "Pulled live from Twitch automatically."} 
-            </div>
-          </div>
+                 : "Updates automatically when the stream goes live."}
+  </div>
+</div>
 
           <div style={{ ...styles.card, ...styles.panel }}>
             <div style={styles.smallLabel}>Current Focus</div>
