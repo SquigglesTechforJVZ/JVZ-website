@@ -570,7 +570,7 @@ const [isTablet, setIsTablet] = useState(false);
 });
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
   const schedule = [
-    { day: "Monday", time: "7:00 PM ET", title: "Community Night" },
+    { https://www.facebook.com/profile.php?id=61587272157868 },
     { day: "Wednesday", time: "8:00 PM ET", title: "Ranked / Main Game" },
     { day: "Friday", time: "9:00 PM ET", title: "Late Night Chaos" },
     { day: "Sunday", time: "6:00 PM ET", title: "Chill Stream + Recap" },
