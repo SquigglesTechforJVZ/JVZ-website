@@ -1314,6 +1314,7 @@ From the track to every battlefield...I started in racing, now I’m taking that
       }}
     >
       <div style={{ fontSize: 24, fontWeight: 800 }}>
+        Youtube Community  
       </div>
       <div style={{ ...styles.muted, marginTop: 12, lineHeight: 1.7 }}>
         Community mode until YouTube live stream is detected.
