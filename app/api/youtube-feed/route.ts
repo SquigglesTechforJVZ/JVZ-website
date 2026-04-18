@@ -72,9 +72,9 @@ export async function GET() {
     channelUrl.searchParams.set("id", channelId);
     channelUrl.searchParams.set("key", apiKey);
 
-    const channelRes = await fetch(channelUrl.toString(), {
-      cache: "no-store",
-    });
+const channelRes = await fetch(channelUrl.toString(), {
+  next: { revalidate: 3600 },
+});;
 
     if (!channelRes.ok) {
       const text = await channelRes.text();
@@ -100,9 +100,9 @@ export async function GET() {
     playlistUrl.searchParams.set("maxResults", "8");
     playlistUrl.searchParams.set("key", apiKey);
 
-    const playlistRes = await fetch(playlistUrl.toString(), {
-      cache: "no-store",
-    });
+const playlistRes = await fetch(playlistUrl.toString(), {
+  next: { revalidate: 3600 },
+});
 
     if (!playlistRes.ok) {
       const text = await playlistRes.text();
@@ -134,22 +134,34 @@ export async function GET() {
       })
       .filter(Boolean);
 
-    return NextResponse.json({
-      channelId,
-      channelTitle: channel?.snippet?.title || "YouTube Channel",
-      uploadsPlaylistId,
-      videos,
-    });
+return NextResponse.json(
+  {
+    channelId,
+    channelTitle: channel?.snippet?.title || "YouTube Channel",
+    uploadsPlaylistId,
+    videos,
+  },
+  {
+    headers: {
+      "Cache-Control": "s-maxage=3600, stale-while-revalidate=7200",
+    },
+  }
+);
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unknown server error";
 
-    return NextResponse.json(
-      {
-        videos: [],
-        error: message,
-      },
-      { status: 500 }
-    );
+return NextResponse.json(
+  {
+    isLive: false,
+    videoId: null,
+    title: "",
+    error: message,
+  },
+  {
+    status: 500,
+    headers: {
+      "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+    },
   }
-}
+);
