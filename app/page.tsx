@@ -662,7 +662,7 @@ const [isTablet, setIsTablet] = useState(false);
   const interval = setInterval(() => {
     loadLiveStatus();
     loadYouTubeLiveStatus();
-  }, 60000);
+  }, 300000);
 
  return () => {
       mounted = false;
