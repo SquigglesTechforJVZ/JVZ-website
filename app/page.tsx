@@ -653,16 +653,14 @@ const [isTablet, setIsTablet] = useState(false);
     }
   }
 
-  // Initial load
-  loadLiveStatus();
-  loadYouTubeFeed();
-  loadYouTubeLiveStatus();
+// Initial load
+loadLiveStatus();
+loadYouTubeFeed();
 
-  // Auto refresh every 60s
-  const interval = setInterval(() => {
-    loadLiveStatus();
-    loadYouTubeLiveStatus();
-  }, 300000);
+// Auto refresh (Twitch only)
+const interval = setInterval(() => {
+  loadLiveStatus();
+}, 300000);
 
  return () => {
       mounted = false;
