@@ -30,10 +30,8 @@ export async function GET() {
     url.searchParams.set("key", apiKey);
 
     const res = await fetch(url.toString(), {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
+  next: { revalidate: 60 }, // cache for 60 seconds
+});
       const text = await res.text();
       throw new Error(`Failed to get YouTube live status: ${res.status} ${text}`);
     }
