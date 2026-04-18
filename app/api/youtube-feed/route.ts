@@ -147,21 +147,20 @@ return NextResponse.json(
     },
   }
 );
-  } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Unknown server error";
+} catch (error) {
+  const message =
+    error instanceof Error ? error.message : "Unknown server error";
 
-return NextResponse.json(
-  {
-    isLive: false,
-    videoId: null,
-    title: "",
-    error: message,
-  },
-  {
-    status: 500,
-    headers: {
-      "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+  return NextResponse.json(
+    {
+      videos: [],
+      error: message,
     },
-  }
-);
+    {
+      status: 500,
+      headers: {
+        "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+      },
+    }
+  );
+}
