@@ -30,7 +30,7 @@ export async function GET() {
     url.searchParams.set("key", apiKey);
 
     const res = await fetch(url.toString(), {
-      next: { revalidate: 60 },
+      next: { revalidate: 300 },
     });
 
     if (!res.ok) {
@@ -52,7 +52,7 @@ export async function GET() {
         },
         {
           headers: {
-            "Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+            "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
           },
         }
       );
@@ -66,7 +66,7 @@ export async function GET() {
       },
       {
         headers: {
-          "Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+          "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
         },
       }
     );
