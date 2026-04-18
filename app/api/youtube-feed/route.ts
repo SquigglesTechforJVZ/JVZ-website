@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { kv } from "@vercel/kv";
 
 type YouTubeChannelListResponse = {
   items?: Array<{
@@ -35,6 +36,23 @@ type YouTubePlaylistItemsResponse = {
   }>;
 };
 
+type CachedFeed = {
+  channelId: string;
+  channelTitle: string;
+  uploadsPlaylistId: string;
+  videos: Array<{
+    id: string;
+    title: string;
+    description: string;
+    publishedAt: string | null;
+    channelTitle: string;
+    thumbnail: string;
+    url: string;
+    embedUrl: string;
+  }>;
+  cachedAt: string;
+};
+
 function pickThumbnail(
   thumbnails:
     | {
@@ -56,6 +74,8 @@ function pickThumbnail(
   );
 }
 
+const CACHE_KEY = "youtube:feed:latest";
+
 export async function GET() {
   try {
     const apiKey = process.env.YOUTUBE_API_KEY;
@@ -65,26 +85,21 @@ export async function GET() {
       throw new Error("Missing YOUTUBE_API_KEY or YOUTUBE_CHANNEL_ID");
     }
 
-    const channelUrl = new URL(
-      "https://www.googleapis.com/youtube/v3/channels"
-    );
+    const channelUrl = new URL("https://www.googleapis.com/youtube/v3/channels");
     channelUrl.searchParams.set("part", "contentDetails,snippet");
     channelUrl.searchParams.set("id", channelId);
     channelUrl.searchParams.set("key", apiKey);
 
-const channelRes = await fetch(channelUrl.toString(), {
-  next: { revalidate: 3600 },
-});;
+    const channelRes = await fetch(channelUrl.toString(), {
+      next: { revalidate: 3600 },
+    });
 
     if (!channelRes.ok) {
       const text = await channelRes.text();
-      throw new Error(
-        `Failed to get YouTube channel: ${channelRes.status} ${text}`
-      );
+      throw new Error(`Failed to get YouTube channel: ${channelRes.status} ${text}`);
     }
 
-    const channelJson =
-      (await channelRes.json()) as YouTubeChannelListResponse;
+    const channelJson = (await channelRes.json()) as YouTubeChannelListResponse;
     const channel = channelJson.items?.[0];
     const uploadsPlaylistId = channel?.contentDetails?.relatedPlaylists?.uploads;
 
@@ -92,27 +107,22 @@ const channelRes = await fetch(channelUrl.toString(), {
       throw new Error("Uploads playlist not found for YouTube channel");
     }
 
-    const playlistUrl = new URL(
-      "https://www.googleapis.com/youtube/v3/playlistItems"
-    );
+    const playlistUrl = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
     playlistUrl.searchParams.set("part", "snippet");
     playlistUrl.searchParams.set("playlistId", uploadsPlaylistId);
     playlistUrl.searchParams.set("maxResults", "8");
     playlistUrl.searchParams.set("key", apiKey);
 
-const playlistRes = await fetch(playlistUrl.toString(), {
-  next: { revalidate: 3600 },
-});
+    const playlistRes = await fetch(playlistUrl.toString(), {
+      next: { revalidate: 3600 },
+    });
 
     if (!playlistRes.ok) {
       const text = await playlistRes.text();
-      throw new Error(
-        `Failed to get YouTube playlist items: ${playlistRes.status} ${text}`
-      );
+      throw new Error(`Failed to get YouTube playlist items: ${playlistRes.status} ${text}`);
     }
 
-    const playlistJson =
-      (await playlistRes.json()) as YouTubePlaylistItemsResponse;
+    const playlistJson = (await playlistRes.json()) as YouTubePlaylistItemsResponse;
 
     const videos = (playlistJson.items || [])
       .map((item) => {
@@ -132,36 +142,56 @@ const playlistRes = await fetch(playlistUrl.toString(), {
           embedUrl: `https://www.youtube.com/embed/${videoId}`,
         };
       })
-      .filter(Boolean);
+      .filter((video): video is NonNullable<typeof video> => Boolean(video));
 
-return NextResponse.json(
-  {
-    channelId,
-    channelTitle: channel?.snippet?.title || "YouTube Channel",
-    uploadsPlaylistId,
-    videos,
-  },
-  {
-    headers: {
-      "Cache-Control": "s-maxage=3600, stale-while-revalidate=7200",
-    },
-  }
-);
-} catch (error) {
-  const message =
-    error instanceof Error ? error.message : "Unknown server error";
+    const payload: CachedFeed = {
+      channelId,
+      channelTitle: channel?.snippet?.title || "YouTube Channel",
+      uploadsPlaylistId,
+      videos,
+      cachedAt: new Date().toISOString(),
+    };
 
-  return NextResponse.json(
-    {
-      videos: [],
-      error: message,
-    },
-    {
-      status: 500,
+    await kv.set(CACHE_KEY, payload);
+
+    return NextResponse.json(payload, {
       headers: {
-        "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+        "Cache-Control": "s-maxage=3600, stale-while-revalidate=7200",
       },
+    });
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Unknown server error";
+
+    const cached = await kv.get<CachedFeed>(CACHE_KEY);
+
+    if (cached?.videos?.length) {
+      return NextResponse.json(
+        {
+          ...cached,
+          usingFallbackCache: true,
+          error: message,
+        },
+        {
+          headers: {
+            "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+          },
+        }
+      );
     }
-  );
-}
+
+    return NextResponse.json(
+      {
+        videos: [],
+        error: message,
+        usingFallbackCache: false,
+      },
+      {
+        status: 500,
+        headers: {
+          "Cache-Control": "s-maxage=300, stale-while-revalidate=600",
+        },
+      }
+    );
+  }
 }
