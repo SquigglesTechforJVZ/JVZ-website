@@ -1109,12 +1109,12 @@ From the track to every battlefield...I started in racing, now I’m taking that
                 border: live.isLive ? "2px solid rgba(239,68,68,0.35)" : "1px solid rgba(255,255,255,0.08)",
               }}
             >
-              <iframe
-                src="https://player.twitch.tv/?channel=jvzfrmdablk&parent=jvz-website.vercel.app"
-                style={{ width: "100%", height: 460, border: 0, display: "block" }}
-                allowFullScreen
-                title="JVZ Twitch Stream"
-              />
+<iframe
+  src={`https://player.twitch.tv/?channel=jvzfrmdablk&parent=${window.location.hostname}`}
+  style={{ width: "100%", height: 460, border: 0, display: "block" }}
+  allowFullScreen
+  title="JVZ Twitch Stream"
+/>
             </div>
           </div>
 
