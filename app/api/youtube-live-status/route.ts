@@ -29,9 +29,11 @@ export async function GET() {
     url.searchParams.set("maxResults", "1");
     url.searchParams.set("key", apiKey);
 
-const res = await fetch(url.toString(), {
-  next: { revalidate: 60 },
-});
+    const res = await fetch(url.toString(), {
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) {
       const text = await res.text();
       throw new Error(`Failed to get YouTube live status: ${res.status} ${text}`);
     }
@@ -42,18 +44,32 @@ const res = await fetch(url.toString(), {
     const title = item?.snippet?.title || "";
 
     if (!videoId) {
-      return NextResponse.json({
-        isLive: false,
-        videoId: null,
-        title: "",
-      });
+      return NextResponse.json(
+        {
+          isLive: false,
+          videoId: null,
+          title: "",
+        },
+        {
+          headers: {
+            "Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+          },
+        }
+      );
     }
 
-    return NextResponse.json({
-      isLive: true,
-      videoId,
-      title,
-    });
+    return NextResponse.json(
+      {
+        isLive: true,
+        videoId,
+        title,
+      },
+      {
+        headers: {
+          "Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+        },
+      }
+    );
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unknown server error";
