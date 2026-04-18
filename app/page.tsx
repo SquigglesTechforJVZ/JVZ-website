@@ -1110,7 +1110,7 @@ From the track to every battlefield...I started in racing, now I’m taking that
               }}
             >
 <iframe
-  src={`https://player.twitch.tv/?channel=jvzfrmdablk&parent=${window.location.hostname}`}
+  src={`https://player.twitch.tv/?channel=jvzfrmdablk&parent=${typeof window !== "undefined" ? window.location.hostname : "jvz-website.vercel.app"}`}
   style={{ width: "100%", height: 460, border: 0, display: "block" }}
   allowFullScreen
   title="JVZ Twitch Stream"
